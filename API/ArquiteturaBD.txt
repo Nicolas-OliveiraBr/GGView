@@ -1,0 +1,36 @@
+Usuario: {
+    id: 
+    usr_name: String
+    usr_icon: String  -> (salvar como caminho de arquivo)
+    data_nasc: Date
+    senha_hash: String
+    email: String
+    bio: ?String
+    jogos_fav: [ids_jogos]
+    jogos_curt: [ids_jogos]
+    jogados: [ids_jogos]
+    usr_seguindo: [ids_usrs]
+    usr_seguidores: [ids_usrs]
+
+    //tema_perfil: ?String
+}-
+
+
+Reviews: {
+    id: 
+    id_usr: ref(usr)
+    id_jogo: ref(jogo)
+    avaliacao: Number
+    comentario: ?String
+    data: Date
+    nCurtidas: Number
+    //curt_usrs: [ids_usrs]
+}
+
+Jogo: {
+    id: id_igbd
+    avaliacao: Number
+    nAvaliacoes: Number
+    likes: Number
+    jogaram: Number
+}
