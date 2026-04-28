@@ -9,7 +9,7 @@ class Usuario
     [BsonRepresentation(BsonType.ObjectId)]
     public String? id {get; set;}
     public String usr_name {get; set;} = null!;
-    public String? usr_icon {get; set;} = null!;
+    public String? usr_icon {get; set;}
     public DateTime data_nasc {get; set;}
     [BsonElement("senha_hash")]
     public String senha {get; set;} = null!;
@@ -19,9 +19,9 @@ class Usuario
     [BsonRepresentation(BsonType.ObjectId)]
     public List<String> jogos_curt {get; set;} = new();
     [BsonRepresentation(BsonType.ObjectId)]
-    public List<String> usr_seguindo {get; set;} = new();
-    [BsonRepresentation(BsonType.ObjectId)]
     public List<String> jogados {get; set;} = new();
+    [BsonRepresentation(BsonType.ObjectId)]
+    public List<String> usr_seguindo {get; set;} = new();
     [BsonRepresentation(BsonType.ObjectId)]
     public List<String> usr_seguidores {get; set;} = new();
 }
