@@ -15,6 +15,15 @@
           }
         }
       },
+      "dotenv.net/4.0.2": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.1/dotenv.net.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/dotenv.net.dll": {}
+        }
+      },
       "Microsoft.AspNetCore.OpenApi/10.0.5": {
         "type": "package",
         "dependencies": {
@@ -216,6 +225,20 @@
         "lib/netstandard2.0/DnsClient.xml",
         "lib/netstandard2.1/DnsClient.dll",
         "lib/netstandard2.1/DnsClient.xml"
+      ]
+    },
+    "dotenv.net/4.0.2": {
+      "sha512": "6xpiqKV1aKWIkSSDP7J+60GEKUitiDweD4yOsn9giCMysSfCghJQuYfXQwbzgdmt0Bsv/2ajUCbjvemGavqItA==",
+      "type": "package",
+      "path": "dotenv.net/4.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "dotenv.net.4.0.2.nupkg.sha512",
+        "dotenv.net.nuspec",
+        "lib/netstandard2.0/dotenv.net.dll",
+        "lib/netstandard2.1/dotenv.net.dll"
       ]
     },
     "Microsoft.AspNetCore.OpenApi/10.0.5": {
@@ -688,7 +711,8 @@
     "net10.0": [
       "Microsoft.AspNetCore.OpenApi >= 10.0.5",
       "MongoDB.Driver >= 3.8.0",
-      "Swashbuckle.AspNetCore >= 10.1.7"
+      "Swashbuckle.AspNetCore >= 10.1.7",
+      "dotenv.net >= 4.0.2"
     ]
   },
   "packageFolders": {
@@ -745,6 +769,10 @@
           "Swashbuckle.AspNetCore": {
             "target": "Package",
             "version": "[10.1.7, )"
+          },
+          "dotenv.net": {
+            "target": "Package",
+            "version": "[4.0.2, )"
           }
         },
         "imports": [
@@ -766,7 +794,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/10.0.201/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/10.0.202/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.AspNetCore": "(,10.0.32767]",
           "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",

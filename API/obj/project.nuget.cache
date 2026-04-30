@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "yjvQhFAilRo=",
+  "dgSpecHash": "GO0QjxgL5Do=",
   "success": true,
   "projectFilePath": "/home/samuelc/Área de trabalho/GGView/API/API.csproj",
   "expectedPackageFiles": [
     "/home/samuelc/.nuget/packages/dnsclient/1.6.1/dnsclient.1.6.1.nupkg.sha512",
+    "/home/samuelc/.nuget/packages/dotenv.net/4.0.2/dotenv.net.4.0.2.nupkg.sha512",
     "/home/samuelc/.nuget/packages/microsoft.aspnetcore.openapi/10.0.5/microsoft.aspnetcore.openapi.10.0.5.nupkg.sha512",
     "/home/samuelc/.nuget/packages/microsoft.extensions.apidescription.server/10.0.0/microsoft.extensions.apidescription.server.10.0.0.nupkg.sha512",
     "/home/samuelc/.nuget/packages/microsoft.openapi/2.4.1/microsoft.openapi.2.4.1.nupkg.sha512",

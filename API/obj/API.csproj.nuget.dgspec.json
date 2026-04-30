@@ -55,6 +55,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[10.1.7, )"
+            },
+            "dotenv.net": {
+              "target": "Package",
+              "version": "[4.0.2, )"
             }
           },
           "imports": [
@@ -76,7 +80,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/10.0.201/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/10.0.202/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.AspNetCore": "(,10.0.32767]",
             "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",
