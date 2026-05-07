@@ -2,11 +2,11 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/', function(req, res, next) {
-    res.render('index', { title: `Games` })
+    res.render('games', { title: `Games` })
 })
 router.get('/:name', function(req, res, next) {
     var game_name = req.params.name
-    res.render('index', { title: `${game_name}`})
+    res.render('games', { title: `${game_name}`})
 });
 
 module.exports = router;
