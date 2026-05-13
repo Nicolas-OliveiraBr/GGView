@@ -1,0 +1,53 @@
+
+  <%- include('partials/header') %>
+
+  <main class="profile-layout">
+
+    <aside class="profile-sidebar">
+      
+      <%- include('partials/profileCard') %>
+
+      <%- include('partials/profileStats') %>
+
+    </aside>
+
+    <section class="profile-content">
+
+      <section>
+
+        <h2 class="text-section">Jogos Favoritos</h2>
+
+        <div class="games-row">
+          <%- include('partials/cardGame', {rating: 3}) %>
+          <%- include('partials/cardGame', {rating: 3}) %>
+          <%- include('partials/cardGame', {rating: 3}) %>
+          <%- include('partials/cardGame', {rating: 3}) %>
+          <%- include('partials/cardGame', {rating: 3}) %>
+          <%- include('partials/cardGame', {rating: 3}) %>
+          <%- include('partials/cardGame', {rating: 3}) %>
+          <%- include('partials/cardGame', {rating: 3}) %>
+          <%- include('partials/cardGame', {rating: 3}) %>
+        </div>
+
+      </section>
+
+      <section>
+
+        <h2 class="text-section">Reviews Recentes</h2>
+
+        <div class="reviews-section-profile">
+          <%- include('partials/cardReview', {rating: 5, gameCover: '/images/imgcarousel.jpg'}) %>
+          <%- include('partials/cardReview', {rating: 4, gameCover: '/images/imgcarousel2.jpg'}) %>
+          <%- include('partials/cardReview', {rating: 3, gameCover: '/images/imgcarousel.jpg'}) %>
+          <%- include('partials/cardReview', {rating: 4, gameCover: '/images/imgcarousel2.jpg'}) %>
+          <%- include('partials/cardReview', {rating: 3, gameCover: '/images/imgcarousel.jpg'}) %>
+        </div>
+
+      </section>
+
+    </section>
+
+  </main>
+
+</body>
+</html>
