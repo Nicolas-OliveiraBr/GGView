@@ -1,4 +1,5 @@
 import { Collection, ObjectId } from 'mongodb';
+import { error } from 'node:console';
 import { isEmail } from "validator"
 
 
@@ -10,11 +11,12 @@ export interface IUser {
     bio?: string
     dataNasc: Date
     // sempre que um novo usuario for criado ele começara com essas listas vázias, por isso não coloque um ? como em bio 
+    // OBS:
     seguidores: ObjectId[]
     seguindo: ObjectId[]
-    jogosCurt: ObjectId[]
-    jogosFav: ObjectId[]
-    jogados: ObjectId[]
+    jogosCurt: string[]
+    jogosFav: string[]
+    jogados: string[]
 }
 
 export default class UserDAO {
@@ -62,5 +64,64 @@ export default class UserDAO {
             };
             //
         }
+    }
+
+    //OBS: este código servira para adicionar a qualquer lista
+    static async add_delJogo(collection: Collection<IUser>, email: string, lista: string, jogo: string, isAdd: boolean) {
+        try {
+            let result
+            if (isAdd) {
+                return await collection.updateOne(
+                    {email: email},
+                    {$addToSet: {[lista]: jogo}}
+                )
+            }
+            return await collection.updateOne(
+                {email: email},
+                {$pull: {[lista]: jogo}}
+            )
+        }
+        catch (err: any) {
+            if (err.name === 'MongoNetworkError' || err.name === 'MongoServerSelectionError' || err.message.includes('topology')) {
+                return {
+                    status: 503, //serviço insdisponível
+                    error: "Não foi possível conectar ao banco de dados. Verifique a sua internet e tente novamente mais tarde."
+                };
+            }
+
+            console.error("Erros não considerados:", err)
+            return {
+                status: 500,
+                error: "Ocorreu um erro interno ao salvar as alterações."
+            }
+        }
+    }
+
+    static async atualizarUsuario(collection: Collection<IUser>, email: string, dados: object) {
+        try {
+            const result = collection.updateOne(
+                {email: email},
+                {$set: dados}
+            )
+            return result
+        } catch (err: any) {
+            if (err.code === 11000) {
+                return { status: 409, error: "Este nome de usuário já está sendo usado por outra pessoa." };
+            }
+
+            if (err.name === 'MongoNetworkError' || err.name === 'MongoServerSelectionError' || err.message.includes('topology')) {
+                return {
+                    status: 503, //serviço insdisponível
+                    error: "Não foi possível conectar ao banco de dados. Verifique a sua internet e tente novamente mais tarde."
+                };
+            }
+
+            console.error("Erros não considerados:", err)
+            return {
+                status: 500,
+                error: "Ocorreu um erro interno ao salvar as alterações."
+            }
+        }
+            
     }
 }
