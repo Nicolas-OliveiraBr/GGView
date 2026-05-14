@@ -1,5 +1,6 @@
 import { Collection, ObjectId } from 'mongodb';
 import { error } from 'node:console';
+import { json } from 'node:stream/consumers';
 import { isEmail } from "validator"
 
 
@@ -67,18 +68,12 @@ export default class UserDAO {
     }
 
     //OBS: este código servira para adicionar a qualquer lista
-    static async add_delJogo(collection: Collection<IUser>, email: string, lista: string, jogo: string, isAdd: boolean) {
+    static async add_delJogo(collection: Collection<IUser>, email: string, lista: string, jogo: string, isAdding: boolean) {
+        const operador = isAdding ? "$addToSet" : "$pull"
         try {
-            let result
-            if (isAdd) {
-                return await collection.updateOne(
-                    {email: email},
-                    {$addToSet: {[lista]: jogo}}
-                )
-            }
             return await collection.updateOne(
-                {email: email},
-                {$pull: {[lista]: jogo}}
+                { email: email },
+                { [operador]: { [lista]: jogo } }
             )
         }
         catch (err: any) {
@@ -100,8 +95,8 @@ export default class UserDAO {
     static async atualizarUsuario(collection: Collection<IUser>, email: string, dados: object) {
         try {
             const result = collection.updateOne(
-                {email: email},
-                {$set: dados}
+                { email: email },
+                { $set: dados }
             )
             return result
         } catch (err: any) {
@@ -122,6 +117,40 @@ export default class UserDAO {
                 error: "Ocorreu um erro interno ao salvar as alterações."
             }
         }
-            
+
+    }
+
+    static async follow_unfollow(collection: Collection<IUser>, idSeguidor: ObjectId, idSeguindo: ObjectId, isFollowing: boolean) {
+        const operador = isFollowing ? "$addToSet" : "$pull"
+        try {
+            const [resSeguidor, resSeguindo] = await Promise.all([
+                collection.updateOne(
+                    { _id: idSeguidor },
+                    { [operador]: { seguindo: idSeguindo } }
+                ),
+                collection.updateOne(
+                    { _id: idSeguindo },
+                    { [operador]: { seguidores: idSeguidor } }
+                )
+            ])
+
+            return {
+                "resSeguidor": resSeguidor,
+                "resSeguindo": resSeguindo
+            }
+        } catch (err:any) {
+            if (err.name === 'MongoNetworkError' || err.name === 'MongoServerSelectionError' || err.message.includes('topology')) {
+                return {
+                    status: 503, //serviço insdisponível
+                    error: "Não foi possível conectar ao banco de dados. Verifique a sua internet e tente novamente mais tarde."
+                };
+            }
+
+            console.error("Erro em follow_unfollow:", err)
+            return {
+                status: 500, 
+                error: "Ocorreu um erro interno ao salvar as alterações"
+            }
+        }
     }
 }
