@@ -1,8 +1,4 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-a {
-  color: #00B7FF;
-}
+@import url('./base/variables.css');
+@import url('./layouts/navbar.css');
+@import url('./layouts/footer.css');
+@import url('./layouts/searchbar.css');

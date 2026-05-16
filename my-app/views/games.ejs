@@ -1,1 +1,34 @@
-<%- include('./partials/header') %>
+
+<%- include('./partials/_header') %>
+    <main>
+        <div class="container-relative">
+            
+            <!-- Criando o trapézio de baixo, que serve apenas como um componente visual do design -->
+            <div class="shadow-limit-bottom wrapper-background"> <!-- Sombra -->
+                <div class="game-background-bottom"></div> <!-- Definição do primeiro trapézio -->
+            </div>
+
+            <!-- Criando o trapézio de cima, que conterá as informações principais sobre o jogo -->
+            <div class="shadow-limit-top wrapper-background"> <!--Criando uma div para que a sombra do elemento recortado apareça -->
+                <div class="game-background-top"> <!-- Onde o trapézio é definido -->
+                    <div class="card-show">
+                        <img id="game-banner" src="https://images.igdb.com/igdb/image/upload/t_cover_big/co8fu7.webp" alt="Game Banner">
+                            <section class="card-show-body">
+                                <div class="name-and-class-ind">
+                                    <h3 id="game-name">Minecraft</h3>
+                                    <img id="class-ind" src="https://logodownload.org/wp-content/uploads/2017/07/classificacao-livre-logo.png" alt="Classificação Indicativa">
+                                </div>
+                                <p id="game-description">
+                                    Minecraft focuses on allowing the player to explore, interact with, and modify a dynamically-generated map made of one-cubic-meter-sized blocks. In addition to blocks, the environment features plants, mobs, and items. Some activities in the game include mining for ore, fighting hostile mobs, and crafting new blocks and tools by gathering various resources found in the game. The game's open-ended model allows players to create structures, creations, and artwork on various multiplayer servers or their single-player maps. Other features include redstone circuits for logic computations and remote actions, minecarts and tracks, and a mysterious underworld called the Nether. A designated but completely optional goal of the game is to travel to a dimension called the End, and defeat the ender dragon.
+                                </p>
+                            </section>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="game-visuals"></div>
+        </div>
+    </main>
+
+<%- include('./partials/_footer') %>

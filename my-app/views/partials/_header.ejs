@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous"> <!-- Referências de estilo (style) do Bootstrap -->
+    <link rel='stylesheet' href='/stylesheets/style.css'/> <!-- Referência (link) direta para o arquivo 'style.css', que importa todas as stylesheets necessárias para o carregamento do site e evita sobrecarregar o servidor com muitas requests -->
+
+    <!-- Caso alguma tela possua uma estilização exclusiva, esse comando verifica qual arquivo CSS está sendo requisitado -->
+    <% if (typeof exclusiveCSS !== 'undefined') { %>
+      <link rel="stylesheet" href="/stylesheets/pages/<%= exclusiveCSS %>"/>
+    <% } %>
+    
+    <title><%= title %></title>
+</head>
+<body>
+    <nav class="navbar-content">
+        <div class="navbar-links">
+            <a href="/games">Jogos</a>
+            <a href="#">Avaliações</a>
+            <a href="#">Lançamentos</a>
+        </div>
+
+        <%- include('_search') %>
+        
+        <a href="/profile" class="profile-info">
+            <img src="https://static.qobuz.com/images/covers/ky/71/fcz73cy1471ky_600.jpg" alt="Profile" class="avatar">
+            <span>Perfil</span>
+        </a>
+    </nav>
+    
