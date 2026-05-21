@@ -1,0 +1,139 @@
+@keyframes design-transition {
+    0% {
+        transform: translateX(-15%);
+        opacity: 0.0;
+    }
+
+    100% {
+        transform: translateX(0%);
+        opacity: 1;
+    }
+}
+
+@keyframes image-animation {
+    0% {
+        transform: translateX()
+    }
+}
+
+body {
+    height: 100%;
+    background-color: #b40103;
+    color: var(--cor-texto);
+}
+
+.container-relative {
+    position: relative;
+}
+
+.game-background-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+    width: 100vw;
+    height: 100vh;
+    padding: 15px;
+    background-color: #b40103;
+    background-image: linear-gradient(to right, #540103 1%, transparent 40%);
+    /* Pontos: superior-esquerdo, superior-direito, inferior-direito, inferior-esquerdo */
+    clip-path: polygon(0% 0%, 53% 0%, 48% 100%, 0% 100%);
+    z-index: 10;
+    animation: design-transition 1.5s ease forwards;
+}
+
+.game-background-bottom {
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+    width: 100vw;
+    height: 100vh;
+    background-color: #740103;
+    /* background-image: linear-gradient(to right, #540103 1%, transparent 30%); */
+    /* Pontos: superior-esquerdo, superior-direito, inferior-direito, inferior-esquerdo */
+    clip-path: polygon(0% 0%, 56.5% 0%, 50% 100%, 0% 100%);
+    z-index: 5;
+    animation: design-transition 1s ease forwards;
+}
+
+.wrapper-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+.shadow-limit-bottom {
+    filter: drop-shadow(8px 0px 10px #540103);
+    z-index: 5;
+}
+
+.shadow-limit-top {
+    filter: drop-shadow(5px 0px 10px #540103);
+    z-index: 10;
+}
+
+.game-visuals {
+    background-image: url('https://images5.alphacoders.com/752/thumb-1920-752070.jpg');
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 55vw;
+}
+
+.game-card {
+    min-height: 35%;
+    width: 45%;
+    height: auto;
+    padding: 10px;
+    background-color: var(--cor-background-card);
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px 0 #B40103;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#game-banner {
+    border-radius: 5px;
+    width: 200px;
+    height: 100%;
+}
+
+.game-spef {
+    flex: 2;
+    padding: 10px;
+    flex-direction: column;
+}
+
+.name-and-class-ind {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 10px;
+}
+
+#game-name {
+    font-family: var(--game-name);
+    margin: 0;
+    padding: 0;
+}
+
+#class-ind {
+    width: 25px;
+    height: 25px;
+    flex-shrink: 0;
+}
+
+.game-description {
+    font-family: var(--search-bar-font);
+    font-size: 17px;
+}
+
