@@ -1,3 +1,8 @@
+a {
+    text-decoration: none;
+    color: var(--cor-texto);
+}
+
 @keyframes design-transition {
     0% {
         transform: translateX(-15%);
@@ -92,13 +97,31 @@ body {
     min-height: 35%;
     width: 45%;
     height: auto;
-    padding: 10px;
+    padding: 20px;
     background-color: var(--cor-background-card);
     border-radius: 10px;
     box-shadow: 5px 5px 10px 0 #B40103;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: left;
+}
+
+.game-info {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding-bottom: 10px;
+}
+
+.game-spef {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+
+.game-spef p {
+    margin: 0;
+    line-height: 1;
 }
 
 #game-banner {
@@ -107,29 +130,26 @@ body {
     height: 100%;
 }
 
-.game-spef {
-    flex: 2;
-    padding: 10px;
-    flex-direction: column;
-}
-
 .name-and-class-ind {
     display: flex;
-    width: 100%;
-    align-items: center;
-    gap: 10px;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 5px;
 }
 
 #game-name {
     font-family: var(--game-name);
     margin: 0;
     padding: 0;
+    line-height: 1;
 }
 
 #class-ind {
+    display: flex;
     width: 25px;
     height: 25px;
     flex-shrink: 0;
+
 }
 
 .game-description {
@@ -137,3 +157,25 @@ body {
     font-size: 17px;
 }
 
+.developer-and-release {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.genres {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+}
+
+.genres a {
+    margin-right: 10px;
+    border: 2px solid #790002;
+    background-color: transparent;
+    border-radius: 5px;
+    padding: 5px;
+    line-height: 1;
+}
