@@ -3,6 +3,12 @@ a {
     color: var(--cor-texto);
 }
 
+button {
+    border: none;
+    background-color: transparent;
+    color: var(--cor-texto)
+}
+
 @keyframes design-transition {
     0% {
         transform: translateX(-15%);
@@ -167,15 +173,48 @@ body {
 
 .genres {
     display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.genre-list {
+    display: flex;
     flex-direction: row;
     margin-top: 10px;
 }
 
-.genres a {
+.genre-list a, .platform-list a {
     margin-right: 10px;
     border: 2px solid #790002;
     background-color: transparent;
     border-radius: 5px;
     padding: 5px;
     line-height: 1;
+}
+
+.genre-list a:hover, .platform-list a:hover {
+    background-color: rgb(194, 0, 0);
+    box-shadow: 2px 2px 10px 0 #B40103;
+    border: none;
+}
+
+.platforms {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.platform-list button {
+    background-color: rgb(194, 0, 0);
+    border-radius: 5px;
+}
+
+.platform-list button:hover {
+    box-shadow: 2px 2px 10px 0 #B40103;
+}
+
+.platform-list {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
 }
