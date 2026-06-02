@@ -1,6 +1,4 @@
 import { Collection, ObjectId } from 'mongodb';
-import { error } from 'node:console';
-import { json } from 'node:stream/consumers';
 import { isEmail } from "validator"
 
 
@@ -91,7 +89,7 @@ export default class UserDAO {
             }
         }
     }
-
+    
     static async atualizarUsuario(collection: Collection<IUser>, email: string, dados: object) {
         try {
             const result = collection.updateOne(
@@ -111,7 +109,7 @@ export default class UserDAO {
                 };
             }
 
-            console.error("Erros não considerados:", err)
+            console.error("Erros não tratado:", err)
             return {
                 status: 500,
                 error: "Ocorreu um erro interno ao salvar as alterações."
