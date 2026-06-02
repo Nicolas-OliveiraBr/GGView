@@ -14,10 +14,11 @@ nav {
     position: sticky; /* Define que a navbar estará fixa na tela */
     box-shadow: 0 3px 10px 0px #540103; 
     z-index: 1000; /* Comando para definir a profundidade da navbar para o 'topo' do site */
+    top: 0;
+    left: 0;
 }
 
 .navbar-links a {
-    text-decoration: none;
     border: 0;
     color: var(--cor-texto);
     font-weight: normal;

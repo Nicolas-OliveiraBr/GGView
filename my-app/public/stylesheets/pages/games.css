@@ -9,6 +9,14 @@ button {
     color: var(--cor-texto)
 }
 
+body {
+    min-height: 100vh;
+    background-color: #b40103;
+    color: var(--cor-texto);
+    display: flex;
+    flex-direction: column;
+}
+
 @keyframes design-transition {
     0% {
         transform: translateX(-15%);
@@ -27,14 +35,10 @@ button {
     }
 }
 
-body {
-    height: 100%;
-    background-color: #b40103;
-    color: var(--cor-texto);
-}
-
 .container-relative {
     position: relative;
+    flex: 1;
+    min-height: 100vh;
 }
 
 .game-background-top {
@@ -43,7 +47,7 @@ body {
     left: 0;
     
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     padding: 15px;
     background-color: #b40103;
     background-image: linear-gradient(to right, #540103 1%, transparent 40%);
@@ -59,7 +63,7 @@ body {
     left: 0;
     
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     background-color: #740103;
     /* background-image: linear-gradient(to right, #540103 1%, transparent 30%); */
     /* Pontos: superior-esquerdo, superior-direito, inferior-direito, inferior-esquerdo */
@@ -73,7 +77,7 @@ body {
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100vh;
+    height: 100%;
 }
 
 .shadow-limit-bottom {
@@ -95,7 +99,7 @@ body {
     position: absolute;
     top: 0;
     right: 0;
-    height: 100vh;
+    height: 100%;
     width: 55vw;
 }
 
@@ -217,4 +221,22 @@ body {
     display: flex;
     flex-direction: row;
     margin-top: 10px;
+}
+
+.rating-and-share {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    justify-content: flex-end;
+    line-height: 1;
+}
+
+.rating-and-share button {
+    background-color: rgb(194, 0, 0);
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.rating-and-share button:hover {
+    box-shadow: 2px 2px 10px 0 #B40103;
 }
