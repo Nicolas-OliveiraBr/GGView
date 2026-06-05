@@ -61,7 +61,6 @@
 .stars {
   display: flex;
   gap: 2px;
-  padding-left: 5px;
 }
 
 .star-filled {
@@ -73,10 +72,35 @@
 }
 
 /* Card de review */
+
+.author-link {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  gap: 8px; 
+}
+
+.author-link:hover span {
+  color: #8C0002;
+  text-decoration: none; 
+}
+
+.review-title-link {
+  text-decoration: none;
+  color: inherit;
+  transition: 0.2s;
+}
+
+.review-title-link:hover {
+  color: #8C0002;
+  text-decoration: none;
+}
+
 .review-card {
   background: #222;
   border-radius: 10px;
-  padding: 20px;
+  padding: 12px;
   height: auto;
   box-shadow: 0 4px 4px rgba(0,0,0,0.25);
   margin-left: 5px;

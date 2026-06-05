@@ -8,8 +8,9 @@
   background-color: #1A1A1A;
   display: flex;
   min-height: 100vh;
-  gap: 20px;
   padding: 20px;
+  padding-left: 50px;
+  padding-right: 50px;
 }
 
 .left-column {
