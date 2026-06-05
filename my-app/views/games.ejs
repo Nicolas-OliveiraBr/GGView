@@ -1,1 +1,61 @@
-<%- include('./partials/header') %>
+<%- include('./partials/_header') %>
+    <main>
+        <div class="container-relative">
+            
+            <!-- Criando o trapézio de baixo, que serve apenas como um componente visual do design -->
+            <div class="shadow-limit-bottom wrapper-background"> <!-- Sombra -->
+                <div class="game-background-bottom"></div> <!-- Definição do primeiro trapézio -->
+            </div>
+
+            <!-- Criando o trapézio de cima, que conterá as informações principais sobre o jogo -->
+            <div class="shadow-limit-top wrapper-background"> <!--Criando uma div para que a sombra do elemento recortado apareça -->
+                <div class="game-background-top"> <!-- Onde o trapézio é definido -->
+                    <section class="game-card"> <!-- Criando o espaço onde o card estará -->
+                        <div class="game-info"> <!-- Criando o espaço para informações específicas do jogo -->
+                            <img id="game-banner" src="https://images.igdb.com/igdb/image/upload/t_cover_big/co8fu7.webp" alt="Game Banner">
+                            <div class="game-spef">
+                                <div class="name-and-class-ind">
+                                    <h3 id="game-name">Minecraft</h3>
+                                    <img id="class-ind" src="https://logodownload.org/wp-content/uploads/2017/07/classificacao-livre-logo.png" alt="Classificação Indicativa">
+                                </div>
+                                <div class="developer-and-release">
+                                    <p id="paragraph-info"><strong>Lançamento:</strong> 18 de novembro de 2011 (versão oficial)</p>
+                                    <p id="paragraph-info">
+                                        <strong>Desenvolvedora:</strong> <a href="#">Mojang Studios</a>
+                                    </p>
+                                </div>
+                                <div class="genres">
+                                    <p><strong>Gêneros:</strong></p>
+                                    <div class="genre-list">
+                                        <a href="#">Simulation</a>
+                                        <a href="#">Adventure</a>
+                                        <a href="#">Arcade</a>
+                                    </div>
+                                </div>
+                                <div class="platforms">
+                                    <p><strong>Plataformas: </strong></p>
+                                    <div class="platform-list">
+                                        <a href="#">Android</a>
+                                        <a href="#">Windows</a>
+                                        <button>Ver Mais</button>
+                                    </div>
+                                </div>
+                                <div class="rating-and-share">
+                                    <button><strong>Compartilhar</strong></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="game-description">
+                            <p>
+                                Minecraft focuses on allowing the player to explore, interact with, and modify a dynamically-generated map made of one-cubic-meter-sized blocks. In addition to blocks, the environment features plants, mobs, and items. Some activities in the game include mining for ore, fighting hostile mobs, and crafting new blocks and tools by gathering various resources found in the game. The game's open-ended model allows players to create structures, creations, and artwork on various multiplayer servers or their single-player maps. Other features include redstone circuits for logic computations and remote actions, minecarts and tracks, and a mysterious underworld called the Nether. A designated but completely optional goal of the game is to travel to a dimension called the End, and defeat the ender dragon.
+                            </p>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <div class="game-visuals"></div>
+        </div>
+    </main>
+
+<%- include('./partials/_footer') %>

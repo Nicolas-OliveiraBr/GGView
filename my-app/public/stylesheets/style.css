@@ -1,12 +1,9 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+@import url('./base/variables.css');
+@import url('./layouts/navbar.css');
+@import url('./layouts/footer.css');
+@import url('./layouts/searchbar.css');
 
-a {
-  color: #00B7FF;
-}
-
+/* Card de jogos */
 .card-custom {
   max-width: 125px;
   height: 190px;
@@ -61,10 +58,11 @@ a {
   color:#989898;
 }
 
+/* Card de review */
 .review-card {
-  background: #303030;
-  border-radius: 20px;
-  padding: 10px;
+  background: #222;
+  border-radius: 10px;
+  padding: 20px;
   min-width: 400px;
   height: auto;
   box-shadow: 0 4px 4px rgba(0,0,0,0.25);
@@ -136,6 +134,7 @@ a {
   gap: 5px;
 }
 
+/* carrosel */
 .custom-carousel {
   border-radius: 40px;
   overflow: hidden;
@@ -148,6 +147,7 @@ a {
   object-fit: cover;
 } 
 
+/* Perfil */
 .profile-stats {
   display: flex;
   background-color: #8C0002;
@@ -184,7 +184,6 @@ a {
   align-items: center;
   flex-direction: row;
 }
-
 
 .profile-card {
   border-radius: 20px;
@@ -247,12 +246,6 @@ a {
   text-align: justify;
 }
 
-.review-card {
-  background: #222;
-  padding: 20px;
-  border-radius: 10px;
-}
-
 /* SWIPER */
 
 .card-slider-container {
@@ -268,8 +261,6 @@ a {
   border-radius: 10px;
 }
 
-
-
 .swiper-wrapper {
   display: flex !important;
   margin: 0 !important;
@@ -278,8 +269,8 @@ a {
 .thumbCard {
   margin: 2px !important;
 }
-/* SETINHAS */
 
+/* Setas do swiper */
 .card-slider-container .swiper-button-next,
 .card-slider-container .swiper-button-prev {
   height: 100%;
