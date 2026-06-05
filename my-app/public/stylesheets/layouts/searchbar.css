@@ -1,0 +1,23 @@
+.search-input {
+     outline: none;
+     border: none;
+     background-color:  #721117;
+     font-size: 15px;
+     width: 400px;
+     height: 100%;
+     font-family: var(--search-bar-font);
+     color: var(--cor-navbar-links);
+     border-radius: 15px;
+     padding: 6px;
+     text-align: left;
+}
+
+.searchbar {
+    margin-left: auto;
+}
+
+.search-button {
+    border: none;
+    color: var(--cor-navbar-links);
+    background-color: transparent;
+}

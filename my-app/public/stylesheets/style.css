@@ -1,19 +1,22 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-a {
-  color: #00B7FF;
-}
-
-html,
-body, .container {
-  margin: 0;
-  background-color: #1A1A1A;
-}
+@import url('./base/variables.css');
+@import url('./layouts/navbar.css');
+@import url('./layouts/footer.css');
+@import url('./layouts/searchbar.css');
 
 /* COMPONENTES */
+
+/* Card de jogos */
+
+.thumbCard-link {
+  text-decoration: none; 
+  color: inherit;      
+  display: block;
+}
+
+.thumbCard-link:hover {
+  text-decoration: none;
+  color: inherit;
+}
 
 .card-custom {
   max-width: 125px;
@@ -45,6 +48,8 @@ body, .container {
   background: #303030;
   width: 100%;
   padding: 4px 10px 4px 10px;
+  bottom: 0;
+  left: 0;
 }
 
 .rating {
@@ -67,16 +72,17 @@ body, .container {
   color:#989898;
 }
 
+/* Card de review */
 .review-card {
-  background: #303030;
-  border-radius: 20px;
-  padding: 10px;
-  min-width: 400px;
+  background: #222;
+  border-radius: 10px;
+  padding: 20px;
   height: auto;
   box-shadow: 0 4px 4px rgba(0,0,0,0.25);
   margin-left: 5px;
   margin-right: 5px;
   flex-shrink: 0;
+  max-width: 400px;
 }
 
 .review-title {
@@ -142,6 +148,7 @@ body, .container {
   gap: 5px;
 }
 
+/* carrosel */
 .custom-carousel {
   border-radius: 40px;
   overflow: hidden;
@@ -154,6 +161,7 @@ body, .container {
   object-fit: cover;
 } 
 
+/* Perfil */
 .profile-stats {
   display: flex;
   background-color: #8C0002;
@@ -190,7 +198,6 @@ body, .container {
   align-items: center;
   flex-direction: row;
 }
-
 
 .profile-card {
   border-radius: 20px;
@@ -251,4 +258,183 @@ body, .container {
   line-height: 1.5;
   font-size: 16px;
   text-align: justify;
+}
+
+/* SWIPER */
+
+.card-slider-container {
+  width: 100%;
+  position: relative;
+  max-width: 1400px; 
+  margin: 2px auto; 
+  padding: 0 2%; 
+}
+
+.card img {
+  width: 100% !important;
+  border-radius: 10px;
+}
+
+.swiper-wrapper {
+  display: flex !important;
+  margin: 0 !important;
+}
+
+.thumbCard {
+  margin: 2px !important;
+  width: auto;
+}
+
+.thumbCard img {
+  width: 100%;
+  border-radius: 4px; 
+  object-fit: cover;
+}
+
+/* Setas do swiper */
+.card-slider-container .swiper-button-next,
+.card-slider-container .swiper-button-prev {
+  height: 100%;
+  width: 18px;
+  top: 0;
+  bottom: 0;
+  margin: 0;
+  background: rgba(20, 20, 20, 0.5);
+  color: #fff; 
+  font-weight: bold;
+  z-index: 10;
+}
+
+.card-slider-container .swiper-button-next::after,
+.card-slider-container .swiper-button-prev::after {
+  color: #fff; 
+  width: 18px;
+  font-weight: bold;
+  transition: transform 0.1s ease-out;
+}
+
+@media (min-width: 768px) {
+  .card-slider-container .swiper-button-next::after,
+  .card-slider-container .swiper-button-prev::after {
+    width: 18px; 
+  }
+}
+
+.card-slider-container .swiper-button-next {
+  right: 0;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.card-slider-container .swiper-button-prev {
+  left: 0;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+/* Modal de review */
+.modal-review {
+  background-color: #1A1A1A;
+}
+
+.modal-header {
+  color: #9F9F9F;
+  padding: 10px 15px;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+}
+
+.game-img {
+  width: 100px;
+  height: 150px;
+}
+
+.modal-info {
+  flex-direction: column;  
+  margin: 16px;
+  width: 100%;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.modal-description {
+  font-weight: bold;
+}
+
+.modal-description span {
+  color: #353535; 
+  font-weight: normal;
+}
+
+.modal-review .form-control {
+  background-color: #353535;
+  color: #9F9F9F;
+  border: 1px solid #444;
+  border-radius: 8px;
+  padding: 12px;
+  resize: none; 
+}
+
+.modal-review .form-control::placeholder {
+  color: #9F9F9F;
+}
+
+.modal-review .form-control:focus {
+  background-color: #353535;
+  color: #9F9F9F;
+  border-color: #8C0002; 
+  box-shadow: none;     
+}
+
+.modal-rating .modal-like {
+  font-size: 16px;
+}
+
+.modal-review .star-filled {
+  color: #8C0002; 
+}
+
+.modal-review .star-empty {
+  color: #353535; 
+}
+
+.modal-review .star-filled, 
+.modal-review .star-empty {
+  cursor: pointer;
+  font-size: 1.1rem; 
+  transition: transform 0.2s ease;
+}
+
+.modal-review .bi-heart {
+  font-size: 1.1rem; 
+  cursor: pointer;
+  color: #353535; 
+}
+
+/* Botões do footer do modal de review*/
+.btn {
+  border-radius: 16px !important; 
+  font-size: 14px;
+}
+
+.btn-secondary {
+  background-color: #555;
+  border: none;
+}
+
+.btn-success {
+  background-color: #2D6B1E; 
+  border: none;
+}
+
+@media (max-width: 576px) {
+  .modal-body {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
 }

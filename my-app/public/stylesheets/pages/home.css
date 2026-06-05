@@ -1,11 +1,16 @@
+.home-layout ~ footer { /* ajustes especificos para home */
+    position: relative;
+    width: 100%;
+    margin-top: auto; 
+}
+
 .home-layout {
   background-color: #1A1A1A;
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
   gap: 20px;
   padding: 20px;
 }
-
 
 .left-column {
   flex: 3;
@@ -20,9 +25,7 @@
 }
 
 .games-row {
-  display: flex;
   gap: 10px;
-  overflow-x: auto;
   overflow-y: hidden;
   padding: 5px  0;
 }
@@ -47,4 +50,16 @@ section {
   font-size: 16px;
   font-weight: bold;
   color: #ffffff;
+}
+
+@media (max-width: 992px) {
+  .home-layout {
+    flex-direction: column; 
+    height: auto;
+  }
+  
+  .left-column, .right-column {
+    flex: none;
+    width: 100%;
+  }
 }
