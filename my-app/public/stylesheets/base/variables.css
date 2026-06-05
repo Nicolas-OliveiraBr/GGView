@@ -24,24 +24,62 @@
 
 @font-face {
     font-family: "Open Sans Variable";
-    src: url('/fonts/Open Sans/OpenSans-VariableFont_wdth,wght.ttf');
+    src: url('/fonts/Open Sans/OpenSans-VariableFont.ttf');
     font-display: swap;
+    font-style: normal;
+    font-weight: normal;
 }
 
 @font-face {
     font-family: "Open Sans Italic Variable";
-    src: url('/fonts/Open Sans/OpenSans-Italic-VariableFont_wdth,wght.ttf');
+    src: url('/fonts/Open Sans/OpenSans-Italic-VariableFont.ttf');
     font-display: swap;
+    font-style: italic;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "IstokWeb";
+    src: url('/fonts/IstokWeb/IstokWeb-Regular.woff2');
+    font-display: swap;
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "IstokWeb";
+    src: url('/fonts/IstokWeb/IstokWeb-Italic.woff2');
+    font-display: swap;
+    font-style: italic;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "IstokWeb";
+    src: url('/fonts/IstokWeb/IstokWeb-BoldItalic.woff2');
+    font-display: swap;
+    font-style: italic;
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: "IstokWeb";
+    src: url('/fonts/IstokWeb/IstokWeb-Bold.woff2');
+    font-display: swap;
+    font-style: normal;
+    font-weight: bold;
 }
 
 :root {
     --cor-navbar:  #8c0002;
     --cor-background-game: #B40103;
     --cor-background-card: #8c0002;
+    --cor-sombra-luminosa: #e90004;
     --cor-texto:  #fcfcfc;
     --cor-footer: #360001;
-    --fonte-navbar-links: "Goldman";
-    --game-name: "Anton";
+    --fonte-navbar-links: "Goldman", sans-serif;
+    --game-spef-font: sans-serif;
+    --game-name: "Anton", sans-serif;
     --search-bar-font: "Open Sans Variable";
     --search-bar-italic: "Open Sans Italic Variable";
     --class-ind-livre: url("https://www.gov.br/mj/pt-br/assuntos/seus-direitos/classificacao-1/simbolos-de-autoclassificacao/l_borda.png/@@images/image");

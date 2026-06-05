@@ -1,4 +1,5 @@
 @import url('./base/variables.css');
-@import url('./layouts/navbar.css');
+@import url('./layouts/header.css');
 @import url('./layouts/footer.css');
 @import url('./layouts/searchbar.css');
+@import url('./base/reset.css');
