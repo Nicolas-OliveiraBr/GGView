@@ -9,8 +9,6 @@ export interface IUser {
     senhaHash: string
     bio?: string
     dataNasc: Date
-    // sempre que um novo usuario for criado ele começara com essas listas vázias, por isso não coloque um ? como em bio 
-    // OBS:
     seguidores: ObjectId[]
     seguindo: ObjectId[]
     jogosCurt: string[]
@@ -66,7 +64,7 @@ export default class UserDAO {
     }
 
     //OBS: este código servira para adicionar a qualquer lista
-    static async add_delJogo(collection: Collection<IUser>, email: string, lista: string, jogo: string, isAdding: boolean) {
+    static async add_delGameToList(collection: Collection<IUser>, email: string, lista: string, jogo: string, isAdding: boolean) {
         const operador = isAdding ? "$addToSet" : "$pull"
         try {
             return await collection.updateOne(
