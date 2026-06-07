@@ -1,0 +1,66 @@
+.home-layout ~ footer { /* ajustes especificos para home */
+    position: relative;
+    width: 100%;
+    margin-top: auto; 
+}
+
+.home-layout {
+  background-color: #1A1A1A;
+  display: flex;
+  min-height: 100vh;
+  padding: 20px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.left-column {
+  flex: 3;
+  padding: 10px;
+}
+
+.right-column {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px;
+}
+
+.games-row {
+  gap: 10px;
+  overflow-y: hidden;
+  padding: 5px  0;
+}
+
+section {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.reviews-section {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  flex: 1;
+}
+
+.reviews-section::-webkit-scrollbar {
+  display: none;
+}
+
+.text-section {
+  font-size: 16px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+@media (max-width: 992px) {
+  .home-layout {
+    flex-direction: column; 
+    height: auto;
+  }
+  
+  .left-column, .right-column {
+    flex: none;
+    width: 100%;
+  }
+}

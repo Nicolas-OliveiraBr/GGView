@@ -1,0 +1,48 @@
+@font-face {
+    font-family: "Goldman";
+    src: url("/fonts/Goldman/Goldman-Regular.woff2") format("woff2"); /* Direcionamento para o site e identificação do formato da fonte para reconhecimento do navegador */
+    font-display: swap; /* Permite a legibilidade do conteúdo escrito do site antes mesmo da fonte ser baixada para o navegador */
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Goldman";
+    src: url("/fonts/Goldman/Goldman-Bold.woff2") format("woff2");
+    font-display: swap;
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Anton";
+    src: url('/fonts/Anton/Anton-Regular.ttf');
+    font-display: swap;
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Open Sans Variable";
+    src: url('/fonts/Open Sans/OpenSans-VariableFont_wdth,wght.ttf');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Open Sans Italic Variable";
+    src: url('/fonts/Open Sans/OpenSans-Italic-VariableFont_wdth,wght.ttf');
+    font-display: swap;
+}
+
+:root {
+    --cor-navbar:  #8c0002;
+    --cor-background-game: #B40103;
+    --cor-background-card: #8c0002;
+    --cor-texto:  #fcfcfc;
+    --cor-footer: #360001;
+    --fonte-navbar-links: "Goldman";
+    --game-name: "Anton";
+    --search-bar-font: "Open Sans Variable";
+    --search-bar-italic: "Open Sans Italic Variable";
+    --class-ind-livre: url("https://www.gov.br/mj/pt-br/assuntos/seus-direitos/classificacao-1/simbolos-de-autoclassificacao/l_borda.png/@@images/image");
+}
