@@ -32,7 +32,7 @@ body {
 .container-relative {
     display: grid;
     grid-template-areas: "main";
-    min-height: 100vh;
+    min-height: 120vh;
     width: 100vw;
 }
 
@@ -54,6 +54,7 @@ body {
     clip-path: polygon(0% 0%, 53% 0%, 48% 100%, 0% 100%);
     z-index: 10;
     animation: design-transition 1.5s ease forwards;
+    position: relative;
 }
 
 .game-background-bottom {
@@ -75,17 +76,62 @@ body {
     z-index: 10;
 }
 
+
+
+
+
+
 .review-lobby {
-    width: 100vw;
-    height: 100vh;
-    padding: 15px;
-    background-image: linear-gradient(to right, #740103 25%, transparent);
-
+    min-width: 100vw;
+    width: auto; height: 100vh;
+    background-image: linear-gradient(to right, #3d0001 25%, transparent);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    position: relative;
 }
 
-.review-lobby h1 {
+.reviews-title {
     font-family: var(--game-name);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 10px;
+    gap: 10px;
+    margin-top: 10px;
 }
+
+.reviews-title h2 {
+    margin: 0;
+    line-height: 1;
+}
+
+.review-background-top, .review-background-bottom {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    width: 100%; height: 100%;
+}
+
+.review-background-top {
+    z-index: 10;
+    background-color: #b40103;
+    background-image: linear-gradient(to left, #540103 10%, transparent 40%);
+    /* Pontos: superior-esquerdo, superior-direito, inferior-direito, inferior-esquerdo */
+    clip-path: polygon(0% 0%, 100% 0%, 100% 12%, 0% 12%);
+}
+
+.review-background-bottom {
+    z-index: 5;
+    background-color: #740103;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 15%, 0% 15%);
+}
+
+#review-icon {
+    font-size: 30px;
+}
+
+
+
 
 .game-card {
     width: 45%; height: 50%;
@@ -162,6 +208,7 @@ body {
     align-items: flex-end;
     padding: 20px;
     gap: 40px;
+    margin-bottom: auto;
 }
 
 .carousel {
@@ -270,6 +317,7 @@ body {
     flex-direction: column;
     font-family: var(--game-spef-font);
     font-size: 0.9rem;
+    position: relative;
 }
 
 .game-spef p {
@@ -281,12 +329,14 @@ body {
     border-radius: 5px;
     width: 200px;
     height: auto;
+    box-shadow: 0px 5px 10px #660000;
 }
 
 .name-and-class-ind {
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
+    align-items: center;
+    justify-content: flex-start;
     gap: 5px;
 }
 
@@ -298,7 +348,6 @@ body {
 }
 
 #class-ind {
-    display: flex;
     width: 25px;
     height: 25px;
     flex-shrink: 0;
@@ -378,24 +427,122 @@ body {
     margin-top: 10px;
 }
 
-.rating-and-share {
+.action-buttons {
     display: flex;
-    flex-direction: row;
-    margin-top: 10px;
-    justify-content: flex-end;
-    line-height: 1;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-start;
+    gap: 10px;
 }
 
-.rating-and-share button {
-    background-color: rgb(194, 0, 0);
-    border-radius: 20px;
-    padding: 10px;
+.share-button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px; height: 40px;
+    background-color: var(--cor-botoes-e-acoes);
+    border-radius: 40px;
+    box-shadow: 0px 3px 6px #5e0002;
     transition: 
         box-shadow 0.5s ease,
+        transform 1s ease,
+        background-color 0.5s ease;
+}
+
+.share-button:hover {
+    transform: scale(1.1);
+    box-shadow: 2px 2px 10px 0 #B40103;
+    background-color: rgb(194, 0, 0);
+}
+
+.user-action-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: var(--cor-botoes-e-acoes);
+    width: 40px; height: auto;
+    padding-block: 15px;
+    border-radius: 40px;
+    box-shadow: 0px 3px 6px #5e0002;
+}
+
+.user-action-buttons button i {
+    color: black;
+    opacity: 0.5;
+    font-size: 20px;
+    transition:
+        color 0.5s ease,
         transform 1s ease;
 }
 
-.rating-and-share button:hover {
-    transform: scale(1.1);
-    box-shadow: 2px 2px 10px 0 #B40103;
+/* Estilização individual de alguns ícones que não possuem o mesmo tamanho aparente entre si */
+.user-action-buttons button i.bi-plus {
+    font-size: 32px; 
+    font-weight: bold;
+    line-height: 1;
 }
+
+.user-action-buttons button i.bi-play-fill {
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.user-action-buttons button i:hover {
+    color: var(--cor-texto);
+    transform: scale(1.1);
+}
+
+
+
+
+
+
+
+
+
+
+
+.game-stats {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 15px;
+    margin-top: 10px;
+    width: 45%; height: 50%;
+    position: relative;
+    bottom: 0;
+}
+
+.reviewed, .played, .liked, .favourited {
+    position: relative;
+    width: 80px; height: 100px;
+    background-color: #830000;
+    border-radius: 0px 10px 10px 10px;
+    box-shadow: 0px 5px 10px #220000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition:
+        width 0.5s ease;
+}
+
+.reviewed::before,
+.played::before,
+.liked::before,
+.favourited::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    border: 15px solid transparent;
+    border-left: 15px solid #580000;
+    border-top: 15px solid #580000;
+    filter: drop-shadow(5px 5px 10px #d10000);
+}
+
+.reviewed:hover, .played:hover, .liked:hover, .favourited:hover {
+    width: 100%;
+}
+
+

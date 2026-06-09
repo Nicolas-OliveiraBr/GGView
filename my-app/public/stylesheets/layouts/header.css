@@ -3,16 +3,12 @@
     font-family: var(--fonte-navbar-links);
     font-weight: normal;
     font-size: 20px;
-    width: 100%;
-    min-height: 50px;
-    height: auto;
-    display: flex;
-    flex-direction: row;
+    width: 100%; min-height: 50px; height: auto;
+    display: flex; flex-direction: row;
     position: sticky; /* Define que a navbar estará fixa na tela */
     box-shadow: 0 5px 20px 0px #470001; 
     z-index: 1000; /* Comando para definir a profundidade da navbar para o 'topo' do site */
-    top: 0;
-    left: 0;
+    top: 0; left: 0;
 }
 
 .navbar-links {
@@ -20,7 +16,7 @@
     flex-direction: row;
 }
 
-.navbar-links a, .profile-info {
+.navbar-links a, .profile-info, .notifications {
     padding: 10px;
     display: flex;
     align-items: center;
@@ -33,7 +29,7 @@
     height: 100%;
 }
 
-.navbar-links a:hover, .profile-info:hover {
+.navbar-links a:hover, .profile-info:hover, .notifications:hover {
     transform: scale(1.05);
     background-image: linear-gradient(to right, #8c0002 10%, #580001 100%);
     background-color: #940103;
@@ -42,6 +38,10 @@
 
 .profile-info {
     margin-left: auto;
+}
+
+.navbar-link-style {
+    gap: 10px;
 }
 
 #profile-link {

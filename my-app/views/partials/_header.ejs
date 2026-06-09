@@ -17,13 +17,22 @@
 <body>
     <nav class="navbar-content">
         <div class="navbar-links">
-            <a href="/games">Jogos</a>
-            <a href="#">Avaliações</a>
-            <a href="#">Lançamentos</a>
+            <a class="navbar-link-style" href="/games">
+                <i class="bi bi-house-fill"></i>
+                Início
+            </a>
+            <a class="navbar-link-style" href="#">
+                <i class="bi bi-star-fill"></i>
+                Avaliações
+            </a>
         </div>
 
         <%- include('_search') %>
-        
+        <div class="notifications">
+            <button>
+                <i class="bi bi-bell-fill"></i>
+            </button>
+        </div>
         <div class="profile-info">
             <a href="/profile" id="profile-link">
                 <img src="https://static.qobuz.com/images/covers/ky/71/fcz73cy1471ky_600.jpg" alt="Profile" class="avatar">
