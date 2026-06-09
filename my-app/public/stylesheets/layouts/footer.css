@@ -1,7 +1,4 @@
 footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
     background-color: var(--cor-footer);
     color: var(--cor-texto);
     padding: 20px;
@@ -11,5 +8,4 @@ footer {
     line-height: 1;
     background-image: linear-gradient(to left, #840103 1%, transparent 60%);
     margin-top: auto;
-    opacity: 0;
 }

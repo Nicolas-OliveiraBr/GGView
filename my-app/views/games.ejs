@@ -10,6 +10,7 @@
             <!-- Criando o trapézio de cima, que conterá as informações principais sobre o jogo -->
             <div class="shadow-limit-top"> <!--Criando uma div para que a sombra do elemento recortado apareça -->
                 <div class="game-background-top"> <!-- Onde o trapézio é definido -->
+                    
                     <section class="game-card"> <!-- Criando o espaço onde o card estará -->
                         <div class="game-info"> <!-- Criando o espaço para informações específicas do jogo -->
                             <img id="game-banner" src="https://images.igdb.com/igdb/image/upload/t_cover_big/co8fu7.webp" alt="Game Banner">
@@ -42,10 +43,13 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="game-description">
-                            <p>
-                                Minecraft focuses on allowing the player to explore, interact with, and modify a dynamically-generated map made of one-cubic-meter-sized blocks. In addition to blocks, the environment features plants, mobs, and items. Some activities in the game include mining for ore, fighting hostile mobs, and crafting new blocks and tools by gathering various resources found in the game. The game's open-ended model allows players to create structures, creations, and artwork on various multiplayer servers or their single-player maps. Other features include redstone circuits for logic computations and remote actions, minecarts and tracks, and a mysterious underworld called the Nether. A designated but completely optional goal of the game is to travel to a dimension called the End, and defeat the ender dragon.
-                            </p>
+                            <div class="description d-flex align-items-center opacity-100" style="border-left: 4px solid;">
+                                <p class="ms-3">
+                                    Minecraft focuses on allowing the player to explore, interact with, and modify a dynamically-generated map made of one-cubic-meter-sized blocks. In addition to blocks, the environment features plants, mobs, and items. Some activities in the game include mining for ore, fighting hostile mobs, and crafting new blocks and tools by gathering various resources found in the game. The game's open-ended model allows players to create structures, creations, and artwork on various multiplayer servers or their single-player maps. Other features include redstone circuits for logic computations and remote actions, minecarts and tracks, and a mysterious underworld called the Nether. A designated but completely optional goal of the game is to travel to a dimension called the End, and defeat the ender dragon.
+                                </p>
+                            </div>
                             <div class="rating-and-share">
                                 <button>
                                     <i class="bi bi-share-fill"></i>
@@ -53,13 +57,79 @@
                                 </button>
                             </div>
                         </div>
+                        <button id="show-more">
+                            <i class="bi bi-caret-down-fill"></i>
+                        </button>
                     </section>
-                    
                 </div>
             </div>
 
-            <div class="game-visuals"></div>
+            <section class="game-visuals">
+                <div class="image-carousel carousel-style ">
+                    <div id="imageCarousel" class="carousel slide">
+                        <p class="carousel-tag">Imagens</p>
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#imageCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#imageCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#imageCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="https://images.igdb.com/igdb/image/upload/t_720p/ar4nm4.webp" class="d-block w-100" alt="Game Image 1">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="https://images.igdb.com/igdb/image/upload/t_720p/ar4nm5.webp" class="d-block w-100" alt="Game Image 2">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="https://images.igdb.com/igdb/image/upload/t_720p/ar4qpp.webp" class="d-block w-100" alt="Game Image 2">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
+                            <i class="carousel-button bi bi-caret-left-fill"></i>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel" data-bs-slide="next">
+                            <i class="carousel-button bi bi-caret-right-fill"></i>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="video-carousel carousel-style ">
+                    <div id="videoCarousel" class="carousel slide">
+                        <p class="carousel-tag">Trailers</p>
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#videoCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#videoCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#videoCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <iframe class="carousel-video" src="https://www.youtube.com/embed/MmB9b5njVbA?si=OwfrW6r5RrE68J34" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            </div>
+                            <div class="carousel-item">
+                                <iframe class="carousel-video" src="https://www.youtube.com/embed/vyr3XZrZssk?si=wZn9bxddoC3EEmzN" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            </div>
+                            <div class="carousel-item">
+                                <iframe class="carousel-video" src="https://www.youtube.com/embed/D2Z9oKTzzrM?si=P9YgQiSOh6K2Oby4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#videoCarousel" data-bs-slide="prev">
+                            <i class="carousel-button bi bi-caret-left-fill"></i>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#videoCarousel" data-bs-slide="next">
+                            <i class="carousel-button bi bi-caret-right-fill"></i>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
         </div>
+        <section class="review-lobby">
+            <h1>Avaliações</h1>
+        </section>
     </main>
 
+    <script src="/javascripts/card_activate.js"></script>
 <%- include('./partials/_footer') %>

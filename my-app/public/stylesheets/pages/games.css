@@ -10,6 +10,25 @@
     }
 }
 
+@keyframes carousel-animation {
+    0% {
+        transform: translateX(55%);
+        opacity: 0;
+    }
+
+
+    100% {
+        transform: translateX(0%);
+        opacity: 1;
+    }
+}
+
+body {
+    background-image: linear-gradient(to bottom, #290000 25%, transparent);
+    display: flex;
+    flex-direction: column;
+}
+
 .container-relative {
     display: grid;
     grid-template-areas: "main";
@@ -47,7 +66,7 @@
 }
 
 .shadow-limit-bottom {
-    filter: drop-shadow(8px 0px 10px #300001);
+    filter: drop-shadow(8px 0px 16px #0f0000);
     z-index: 5;
 }
 
@@ -56,20 +75,188 @@
     z-index: 10;
 }
 
+.review-lobby {
+    width: 100vw;
+    height: 100vh;
+    padding: 15px;
+    background-image: linear-gradient(to right, #740103 25%, transparent);
+
+}
+
+.review-lobby h1 {
+    font-family: var(--game-name);
+}
+
 .game-card {
-    width: 45%;
-    height: auto;
-    padding: 20px;
+    width: 45%; height: 50%;
+    padding: 20px; padding-bottom: 30px;
     background-color: var(--cor-background-card);
     border-radius: 10px;
     box-shadow: 5px 5px 10px #B40103;
-    display: flex;
-    flex-direction: column;
-    justify-content: left;
+    display: flex; flex-direction: column;
+    justify-content: flex-start; align-items: left;
+    overflow: hidden;
     z-index: 20;
-    justify-self: start;
+    position: relative;
+    transition: height 1s ease;
+}
+
+.game-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%; height: 100px;
+    background-image: linear-gradient(transparent, #8c0002 70%);
+    z-index: 1;
+}
+
+#show-more {
+    z-index: 2;
+    width: 100%; height: 60px;
+    font-size: 30px;
+    position: absolute;
+    bottom: 15px;
+    left: 50%; /* O lado esquerdo do elemento é centralizado no container pai */
+    transform: translateX(-50%); /* O elemento é então posicionado exatamente no meio, deslocado 50% do seu comprimento X para a esquerda */
+    transition: 
+        opacity 0.5s ease,
+        transform 0.2s ease;
+    opacity: 0.5; /* O botão fica escondido */
+    display: flex;
+    justify-content: center;
     align-items: center;
 }
+
+#show-more:hover {
+    transform: translateX(-50%) scale(1.1);
+    opacity: 1;
+}
+
+/* Espaço para classes que serão manipuladas em Javascript */
+
+.game-card.active {
+    height: auto;
+    transition: height 1s ease;
+}
+
+.game-card.active .game-description {
+    filter: blur(0px);
+}
+
+.game-card.active::before {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+
+
+
+
+
+.game-visuals {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 20px;
+    gap: 40px;
+}
+
+.carousel {
+    width: 40vw;
+    border: 5px solid #5e0002;
+    border-radius: 0px;
+    box-shadow: 0px 5px 10px #140000;
+    padding: 5px;
+    background-image: linear-gradient(45deg, #1f0000, #270000);
+    position: relative;
+    overflow: hidden; 
+    aspect-ratio: 16/10;/* Mantendo a proporcão dos carrosséis para que tanto as imagens quanto os vídeos tenham o mesmo tamanho e se adaptem ao tamanho da tela*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel img {
+    width: 100%; height: 100%;
+}
+
+.carousel::before {
+    content: '';
+    position: absolute;
+    bottom: 0;left: 0;
+    z-index: 1;
+    width: 100%; height: 150px;
+    background-image: linear-gradient(transparent, rgb(10, 10, 10));
+    transition: opacity 0.5s ease;
+    opacity: 1;
+}
+
+.carousel-style {
+    position: relative;
+    z-index: 20;
+    animation: carousel-animation 1s ease-out;
+}
+
+.carousel-style::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    z-index: 1;
+    border: 30px solid transparent;
+    border-top: 30px solid #3d0102;
+    border-left: 30px solid #3d0102;
+    filter: drop-shadow(-5px -5px 10px #B40103);
+    transition: opacity 0.5s ease;
+    opacity: 1;
+}
+
+/* Criando etiquetas para os carrosséis */
+.carousel-tag {
+    position: absolute;
+    top: 0; right: 0;
+    z-index: 1;
+    margin: 10px;
+    background-color: var(--cor-background-card);
+    border-radius: 5px;
+    box-shadow: 0px 5px 10px -5px #a00000;
+    line-height: 1; font-size: 0.9rem;
+    padding: 10px;
+    font-family: var(--search-bar-font);
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    transition: opacity 0.5s ease;
+    opacity: 1;
+}
+
+.carousel-button {
+    font-size: 30px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 50%;
+    width: 55px; height: 55px;
+    box-shadow: 2px 3px 6px #0f0000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-video {
+    width: 100%;
+    height: 25vw;
+}
+
+.carousel-style:hover .carousel-tag, 
+.carousel-style:hover::before, 
+.carousel-style:hover .carousel::before {
+    opacity: 0;
+}
+
+
+
+
 
 .game-info {
     display: flex;
@@ -81,7 +268,6 @@
 .game-spef {
     display: flex;
     flex-direction: column;
-    justify-content: left;
     font-family: var(--game-spef-font);
     font-size: 0.9rem;
 }
@@ -116,12 +302,14 @@
     width: 25px;
     height: 25px;
     flex-shrink: 0;
-
 }
 
 .game-description {
     font-family: var(--search-bar-font);
     font-size: 17px;
+    position: relative; 
+    filter: blur(2px);
+    transition: filter 0.5s ease; 
 }
 
 .developer-and-release {
@@ -210,8 +398,4 @@
 .rating-and-share button:hover {
     transform: scale(1.1);
     box-shadow: 2px 2px 10px 0 #B40103;
-}
-
-@media (orientation: portrait) {
-
 }

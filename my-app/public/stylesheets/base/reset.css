@@ -15,6 +15,7 @@ button {
 body {
     min-height: 100vh;
     min-width: 100vw;
-    background-color: #b40103;
+    background-color: #5f0002;
     color: var(--cor-texto);
+    overflow-y: visible;
 }
