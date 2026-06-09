@@ -1,0 +1,65 @@
+<!-- Botão pra abrir o modal -->
+<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    Launch static backdrop modal
+  </button> -->
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content modal-review">
+
+      <div class="modal-header">
+        <h1 class="modal-title fs-6" id="staticBackdropLabel">Escrevendo review...</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <section class="modal-game">
+          <img src="/images/default.jpg" class="game-img rounded">
+        </section>
+        
+        <section class="modal-info">
+          <h1 class="fs-5 modal-description text-white fw-bold">
+            Titulo <span>(ano)</span>
+          </h1>
+
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label"></label>
+            <textarea class="form-control fs-6" id="exampleFormControlTextarea1" rows="3"
+              placeholder="Escreva aqui o que você achou do jogo..."></textarea>
+          </div>
+
+          <div class="modal-avaliation">
+
+            <div class="d-flex align-items-center gap-5 mt-4">
+              <div class="modal-rating">
+                <span class="d-block mb-1 text-white fw-bold">Avaliar</span>
+                <div class="stars p-0 d-flex gap-1">
+                  <% let currentRating=typeof rating !=='undefined' ? rating : 0; %>
+
+                    <% for(let i=1; i <=5; i++) { %>
+                      <i class="bi bi-star-fill <%= i <= currentRating ? 'star-filled' : 'star-empty' %>"></i>
+                      <% } %>
+                </div>
+              </div>
+
+              <div class="modal-like">
+                <span class="d-block mb-1 text-white fw-bold">Like</span>
+                <i class="bi bi-heart"></i>
+              </div>
+            </div>
+          </div>
+
+        </section>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary px-4 py-2" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-success px-4 py-2 d-flex align-items-center gap-2">
+          <i class="bi bi-plus-lg"></i> Add
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>

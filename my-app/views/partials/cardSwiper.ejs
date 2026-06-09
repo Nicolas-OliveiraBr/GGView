@@ -1,0 +1,15 @@
+<div class="swiper card-slider-container <%= swiperClass %>" data-direction="<%= direction || 'horizontal' %>" data-slides="<%= slidesPerView || 5 %>">
+
+  <div class="thumbCards swiper-wrapper">
+    <% items.forEach(item => { %>
+
+      <div class="thumbCard swiper-slide">
+        <%- include(partial, item) %>
+      </div>
+
+    <% }) %>
+
+  </div>
+  <div class="swiper-button-next"></div>
+  <div class="swiper-button-prev"></div>
+</div>

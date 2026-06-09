@@ -1,0 +1,15 @@
+<div class="card card-custom bg-dark text-white">
+  <img src="https://upload.wikimedia.org/wikipedia/pt/d/d8/Capa_de_Omori.jpeg" class="card-img" alt="..."> <!-- imagem teste -->
+  <div class="card-img-overlay d-flex align-items-center"></div>
+  <div class="card-content">
+    <span class="rating">4.5</span>
+    <div class="stars">
+      <% for(let i = 1; i <= 5; i++) { %>
+        <i class="
+          bi 
+          <%= i <= rating ? 'bi-star-fill star-filled' : 'bi-star-fill star-empty' %>
+        "></i>
+      <% } %>
+    </div>
+  </div>
+</div>
