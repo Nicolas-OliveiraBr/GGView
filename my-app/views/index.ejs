@@ -11,20 +11,10 @@
           <h5 class="text-section">Jogos Populares</h5>
 
           <div class="games-row">
-            <%- include('partials/cardSwiper', { 
-              swiperClass: 'popular-games-slider', 
-              direction: 'horizontal',
-              slidesPerView: 5,
-              partial: 'cardGame', 
-              items: [ 
-                {rating: 5, title: 'Jogo 1' }, 
-                {rating: 4, title: 'Jogo 2' }, 
-                {rating: 3, title: 'Jogo 3' }, 
-                {rating: 3, title: 'Jogo 4' }, 
-                {rating: 3, title: 'Jogo 5' },
-                {rating: 3, title: 'Jogo 6' },
-                {rating: 3, title: 'Jogo 7' },
-              ] }) %>
+            <%- include('partials/cardSwiper', { swiperClass: 'popular-games-slider' , direction: 'horizontal' ,
+              slidesPerView: 5, partial: 'cardGame' , items: [ {rating: 5, title: 'Jogo 1' }, {rating: 4,
+              title: 'Jogo 2' }, {rating: 3, title: 'Jogo 3' }, {rating: 3, title: 'Jogo 4' }, {rating: 3,
+              title: 'Jogo 5' }, {rating: 3, title: 'Jogo 6' }, {rating: 3, title: 'Jogo 7' }, ] }) %>
           </div>
 
         </section>
@@ -34,20 +24,10 @@
           <h5 class="text-section">Lançamentos</h5>
 
           <div class="games-row">
-            <%- include('partials/cardSwiper', { 
-              swiperClass: 'recentes-games-slider', 
-              direction: 'horizontal',
-              slidesPerView: 5,
-              partial: 'cardGame', 
-              items: [ 
-                {rating: 5, title: 'Jogo 1' }, 
-                {rating: 4, title: 'Jogo 2' }, 
-                {rating: 3, title: 'Jogo 3' }, 
-                {rating: 3, title: 'Jogo 4' }, 
-                {rating: 3, title: 'Jogo 5' },
-                {rating: 5, title: 'Jogo 6' }, 
-                {rating: 3, title: 'Jogo 7' },
-              ] }) %>
+            <%- include('partials/cardSwiper', { swiperClass: 'recentes-games-slider' , direction: 'horizontal' ,
+              slidesPerView: 5, partial: 'cardGame' , items: [ {rating: 5, title: 'Jogo 1' }, {rating: 4,
+              title: 'Jogo 2' }, {rating: 3, title: 'Jogo 3' }, {rating: 3, title: 'Jogo 4' }, {rating: 3,
+              title: 'Jogo 5' }, {rating: 5, title: 'Jogo 6' }, {rating: 3, title: 'Jogo 7' }, ] }) %>
           </div>
 
         </section>
@@ -59,13 +39,22 @@
       <h5 class="text-section">Reviews Populares</h5>
 
       <div class="reviews-section">
-        <%- include('partials/cardReview', {title: 'Minecraft' , year: '2000', rating: 5, gameCover: '/images/imgcarousel.jpg', authorName: 'Nicolas' }) %>
-        <%- include('partials/cardReview', {title: 'Jogo 2', year: '2001', rating: 4, gameCover: '/images/imgcarousel2.jpg', authorName: 'Lucas' }) %>
-        <%- include('partials/cardReview', {title: 'Jogo 3', year: '2002', rating: 3, gameCover: '/images/imgcarousel.jpg', authorName: 'Maria' }) %>
-        <%- include('partials/cardReview', {title: 'Jogo 4', year: '2003', rating: 4, gameCover: '/images/imgcarousel2.jpg', authorName: 'Ana' }) %>
+        <% if (locals.fakeReviews && fakeReviews.length> 0) { %>
+          <% fakeReviews.slice(0, 5).forEach(review=> { %>
+          <%- include('partials/cardReview', { 
+            nameGame: review.nameGame, 
+            year: review.year, 
+            rating: review.rating,
+            gameCover: review.gameCover, 
+            authorName: review.authorName, 
+            reviewText: review.reviewText }) %>
+          <% }) %>
+          <% } else { %>
+          <p>Sem avaliações até o momento.</p> 
+          <% } %>
       </div>
     </div>
 
   </main>
 
-<%- include ('./partials/_footer') %>
+  <%- include ('./partials/_footer') %>

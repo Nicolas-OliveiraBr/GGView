@@ -139,10 +139,21 @@ body, .container {
   object-fit: cover;
 }
 
+.game-info {
+  padding-right: 10px;
+}
+
 .review-description {
   margin-top: 10px;
   color: #bdbdbd;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; 
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word; 
   line-height: 1.5;
+  max-height: 6em; 
 }
 
 .review-footer {
@@ -191,105 +202,6 @@ body, .container {
   object-fit: cover;
 } 
 
-/* Perfil */
-.profile-stats {
-  display: flex;
-  background-color: #8C0002;
-  border-radius: 15px;
-  padding: 10px;
-  margin: 10px;
-  min-width: 150px;
-  height: auto;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.stat-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.text-stat {
-  color: white;
-  font-size: 14px;
-}
-
-.number-stat {
-  color: white;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.stats-row {
-  display: flex;
-  gap: 25px;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: row;
-}
-
-.profile-card {
-  border-radius: 20px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.profile-avatar {
-  max-width: 120px;
-  max-height: 120px;
-  border-radius: 50%;
-  object-fit: cover;
-  align-self: center;
-}
-
-.profile-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  flex-direction: column;
-}
-
-.profile-buttons {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.profile-name {
-  color: white;
-  font-size: 18px;
-  font-weight: bold;
-  margin: 0;
-}
-
-.edit-profile-btn {
-  border: none;
-  background: white;
-  color: #8C0002;
-  padding: 5px 15px;
-  border-radius: 20px;
-  font-weight: bold;
-  font-size: 12px;
-  cursor: pointer;
-}
-
-.profile-link {
-  color: white;
-  font-size: 22px;
-  cursor: pointer;
-}
-
-.profile-description {
-  color: white;
-  line-height: 1.5;
-  font-size: 16px;
-  text-align: justify;
-}
-
 /* SWIPER */
 
 .card-slider-container {
@@ -316,8 +228,7 @@ body, .container {
 }
 
 .thumbCard img {
-  width: 100%;
-  border-radius: 4px; 
+  border-radius: 8px; 
   object-fit: cover;
 }
 
@@ -467,58 +378,4 @@ body, .container {
     align-items: center;
     text-align: center;
   }
-}
-
-/* PERFIL */
-/* Falta corrigir o scroll do game-row e reviews-section-profile, melhor se for um carrosel*/
-
-.text-section {
-  font-size: 18px;
-  font-weight: bold;
-  color: #ffffff;
-}
-
-.games-row {
-  display: flex;
-  gap: 10px;
-  padding: 5px  0;
-  overflow-x: auto;
-  overflow-y: hidden;
-}
-
-section {
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-.reviews-section {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  flex: 1;
-}
-
-.profile-layout {
-  display: flex;  
-  gap: 20px;
-  padding: 20px;
-}
-
-.profile-sidebar {
-  max-width: 260px;
-  flex-shrink: 0;
-}
-
-.profile-content {
-  flex: 1;
-  min-width: 0;
-}
-
-.reviews-section-profile {
-  display: flex;
-  flex-direction: row;
-  gap: 15px;
-  padding: 5px 0;
-  overflow-x: auto;
-  overflow-y: hidden;
 }

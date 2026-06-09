@@ -2,8 +2,8 @@
   <div class="review-top">
     <div class="game-info">
       <h6 class='review-title'>
-        <a href="/games/<%= title %>" class="review-title-link">
-          <%= title %> <span class='game-year'>(<%= year %>)</span>
+        <a href="/games/<%= nameGame %>" class="review-title-link">
+          <%= locals.nameGame || "Título Indisponível" %> <span class='game-year'>(<%= locals.year || "----" %>)</span>
         </a>
       </h6>
       <div class="stars">
@@ -18,8 +18,15 @@
     <img src="<%= gameCover || '/images/default.jpg' %>" class="game-cover">
   </div>
   <p class="review-description">
-    Texto da review aqui...
+    <%= locals.reviewText || "Descrição Indisponível" %>
   </p>
+
+  <% if (locals.reviewText && reviewText.length > 150) { %> 
+  <button type="button" class="btn-read-more" data-bs-toggle="modal" data-bs-target="#modalReview-<%= locals.reviewId %>">
+    Ler mais...
+  </button>
+  <% } %>
+
   <div class="review-footer gap-2">
 
     <div class="review-avatar">
@@ -31,11 +38,28 @@
       </a>
     </div>
     <span class="review-date">
-      Maio 23, 2009
+      <%= locals.reviewDate || "Data Indisponível" %>
     </span>
     <div class="review-likes">
       <i class="bi bi-star" style="color: #8C0002;"></i>
-      3,234k
+      <%= locals.reviewLikes || 0 %>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalReview-<%= locals.reviewId %>" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"> <!-- Centralizado e com scroll interno [6, 7] -->
+    <div class="modal-content bg-dark text-white"> <!-- Estilização dark para combinar com o projeto [8] -->
+      <div class="modal-header border-secondary">
+        <h5 class="modal-title"><%= nameGame %></h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p><%= locals.reviewText || "Descrição Indisponível" %></p>
+      </div>
+      <div class="modal-footer border-secondary">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+      </div>
     </div>
   </div>
 </div>
