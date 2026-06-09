@@ -4,6 +4,21 @@
 @import url('./layouts/searchbar.css');
 @import url('./base/reset.css');
 
+/* COMPONENTES */
+
+/* Card de jogos */
+
+.thumbCard-link {
+  text-decoration: none; 
+  color: inherit;      
+  display: block;
+}
+
+.thumbCard-link:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
 /* Card de jogos */
 .card-custom {
   max-width: 125px;
@@ -48,7 +63,6 @@
 .stars {
   display: flex;
   gap: 2px;
-  padding-left: 5px;
 }
 
 .star-filled {
@@ -65,11 +79,42 @@
   border-radius: 10px;
   padding: 20px;
   min-width: 400px;
+}
+
+.author-link {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  gap: 8px; 
+}
+
+.author-link:hover span {
+  color: #8C0002;
+  text-decoration: none; 
+}
+
+.review-title-link {
+  text-decoration: none;
+  color: inherit;
+  transition: 0.2s;
+}
+
+.review-title-link:hover {
+  color: #8C0002;
+  text-decoration: none;
+}
+
+.review-card {
+  background: #222;
+  border-radius: 10px;
+  padding: 12px;
   height: auto;
   box-shadow: 0 4px 4px rgba(0,0,0,0.25);
   margin-left: 5px;
   margin-right: 5px;
   flex-shrink: 0;
+  max-width: 400px;
 }
 
 .review-title {
@@ -269,6 +314,13 @@
 
 .thumbCard {
   margin: 2px !important;
+  width: auto;
+}
+
+.thumbCard img {
+  width: 100%;
+  border-radius: 4px; 
+  object-fit: cover;
 }
 
 /* Setas do swiper */

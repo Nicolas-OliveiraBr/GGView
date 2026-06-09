@@ -1,32 +1,41 @@
 <div class="review-card">
   <div class="review-top">
     <div class="game-info">
-      <h6 class='review-title'>Título do Jogo <span class='game-year'>(ano)</span></h6>
+      <h6 class='review-title'>
+        <a href="/games/<%= title %>" class="review-title-link">
+          <%= title %> <span class='game-year'>(<%= year %>)</span>
+        </a>
+      </h6>
       <div class="stars">
-            <% for(let i = 1; i <= 5; i++) { %>
-                <i class="
+        <% for(let i=1; i <=5; i++) { %>
+          <i class="
                 bi 
                 <%= i <= rating ? 'bi-star-fill star-filled' : 'bi-star-fill star-empty' %>
                 "></i>
-            <% } %>
-        </div>
+          <% } %>
+      </div>
     </div>
     <img src="<%= gameCover || '/images/default.jpg' %>" class="game-cover">
   </div>
   <p class="review-description">
     Texto da review aqui...
   </p>
-  <div class="review-footer">
+  <div class="review-footer gap-2">
+
     <div class="review-avatar">
-      <div class="avatar"></div>
-      <span>Autor da review</span>
+      <a href="/profile/<%= authorName %>" class="author-link">
+        <div class="avatar"></div>
+        <span>
+          <%= authorName %>
+        </span>
+      </a>
     </div>
     <span class="review-date">
       Maio 23, 2009
     </span>
     <div class="review-likes">
-        <i class="bi bi-star" style="color: #8C0002;"></i>
-        3,234k
+      <i class="bi bi-star" style="color: #8C0002;"></i>
+      3,234k
     </div>
   </div>
 </div>

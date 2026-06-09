@@ -24,10 +24,8 @@
 
 @font-face {
     font-family: "Open Sans Variable";
-    src: url('/fonts/Open Sans/OpenSans-VariableFont.ttf');
+    src: url('/fonts/Open Sans/OpenSans-VariableFont_wdth,wght.ttf');
     font-display: swap;
-    font-style: normal;
-    font-weight: normal;
 }
 
 @font-face {
@@ -36,38 +34,6 @@
     font-display: swap;
     font-style: italic;
     font-weight: normal;
-}
-
-@font-face {
-    font-family: "IstokWeb";
-    src: url('/fonts/IstokWeb/IstokWeb-Regular.woff2');
-    font-display: swap;
-    font-style: normal;
-    font-weight: normal;
-}
-
-@font-face {
-    font-family: "IstokWeb";
-    src: url('/fonts/IstokWeb/IstokWeb-Italic.woff2');
-    font-display: swap;
-    font-style: italic;
-    font-weight: normal;
-}
-
-@font-face {
-    font-family: "IstokWeb";
-    src: url('/fonts/IstokWeb/IstokWeb-BoldItalic.woff2');
-    font-display: swap;
-    font-style: italic;
-    font-weight: bold;
-}
-
-@font-face {
-    font-family: "IstokWeb";
-    src: url('/fonts/IstokWeb/IstokWeb-Bold.woff2');
-    font-display: swap;
-    font-style: normal;
-    font-weight: bold;
 }
 
 :root {
