@@ -64,6 +64,24 @@ body, .container {
   color: #989898;
 }
 
+.stars button {
+  cursor: pointer;
+}
+
+.star-hover {
+  color: #8C0002;
+  opacity: 0.4;
+}
+
+.star-selected {
+  color: #8C0002;
+  opacity: 1;
+}
+
+.bi-star {
+  color: #949494; 
+}
+
 .stars {
   display: flex;
   gap: 2px;
@@ -350,10 +368,44 @@ body, .container {
   transition: transform 0.2s ease;
 }
 
+.star-selectable:active {
+  transform: scale(1.4); 
+  transition: transform 0.1s ease; 
+}
+
+
+.star-selectable {
+  display: inline-block; 
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
 .modal-review .bi-heart {
   font-size: 1.1rem; 
   cursor: pointer;
-  color: #353535; 
+  color: #9F9F9F; 
+}
+
+.like-icon-clickable {
+  font-size: 1.1rem; 
+  width: 30px;    
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.heart-active {
+  color: #8C0002 !important; 
+  transition: transform 0.2s ease;
+}
+
+.like-icon-clickable:active {
+  transform: scale(1.3); 
+}
+
+.form-label {
+  color: #353535
 }
 
 /* Botões do footer do modal de review*/

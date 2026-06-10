@@ -17,20 +17,18 @@
         <h2 class="text-section">Jogos Favoritos</h2>
 
         <div class="games-row">
+          <% if (locals.favoriteGames && favoriteGames.length > 0) { %>
             <%- include('partials/cardSwiper', { 
-              swiperClass: 'favorite-games-slider', 
-              direction: 'horizontal',
-              slidesPerView: 5,
-              partial: 'cardGame', 
-              items: [ 
-                {rating: 5, title: 'Jogo 1' }, 
-                {rating: 4, title: 'Jogo 2' }, 
-                {rating: 3, title: 'Jogo 3' }, 
-                {rating: 3, title: 'Jogo 4' }, 
-                {rating: 3, title: 'Jogo 5' },
-                {rating: 5, title: 'Jogo 6' }, 
-                {rating: 3, title: 'Jogo 7' },
-              ] }) %>
+            swiperClass: 'favorite-games-slider', 
+            direction: 'horizontal',
+            slidesPerView: 5,
+            partial: 'cardGame', 
+            items: locals.favoriteGames || [] 
+          }) %>
+
+          <% } else { %>
+            <p class="text-white-50">Ainda não há nenhum jogo favorito.</p>
+          <% } %>
         </div>
 
       </section>
