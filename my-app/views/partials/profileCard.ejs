@@ -2,7 +2,9 @@
   <img src="/images/default.jpg" class="profile-avatar">
   <div class="profile-header">
         <h2 class="profile-name">
-        Nome do Usuário
+        <span>
+          <%= authorName %>
+        </span>
         </h2>
         <div class="profile-buttons">
             <button class="edit-profile-btn">
@@ -12,6 +14,6 @@
         </div>
   </div>
   <p class="profile-description">
-    Descrição do perfil...
+    <%= authorDescription %>
   </p>
 </div>
