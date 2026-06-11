@@ -9,8 +9,9 @@ router.get('/', function(req, res, next) {
   })
 });
 
-router.get('/:name', function(req, res, next) {
-  const game_name = req.params.name
+router.get('/:id', async function(req, res, next) {
+  const gameID = req.params.id
+
     res.render('games', { 
       title: `${game_name}`,
       exclusiveCSS: 'games.css'
