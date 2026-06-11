@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const igdbGames = require('../services/igdbGames')
 
 router.get('/', function(req, res, next) {
   res.render('games', {
@@ -9,7 +10,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/:name', function(req, res, next) {
-    var game_name = req.params.name
+  const game_name = req.params.name
     res.render('games', { 
       title: `${game_name}`,
       exclusiveCSS: 'games.css'
