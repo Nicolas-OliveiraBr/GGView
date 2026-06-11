@@ -73,7 +73,8 @@ export default class ReviewDAO {
 
     static async deletarReview(collection : Collection<IReview>, userRef: ObjectId, gameRef: string) {
         try{
-            const result = await collection.deleteOne({userRef: userRef, gameRef: gameRef})
+            const res = await collection.deleteOne({userRef: userRef, gameRef: gameRef})
+            return res;
         } catch(err: any) {
             console.error("Erro em ReviewDAO.deletarReview: ", err)
 
@@ -87,6 +88,30 @@ export default class ReviewDAO {
             return {
                 status: 500, //erro genérico
                 error: "Desculpe, ocorreu um erro interno no servidor."
+            };
+        }
+    }
+
+    static async getGameReviews(collection: Collection<IReview>, id_igdb: string) {
+        try {
+            const res = collection.find({id_igdb: id_igdb}).toArray();
+            return res;
+        } catch(err: any) {
+            if (err.name === 'MongoNetworkError' || err.name === 'MongoServerSelectionError' || err.message.includes('topology')) {
+                console.error("Erro de rede: O banco de dados parece estar offline.", err);
+                return {
+                    status: 503, // Service Unavailable
+                    body: { error: "Não foi possível conectar ao banco de dados. Verifique a sua internet e tente novamente mais tarde." }
+                };
+            }
+
+            console.error("Erro não esperado na função getGameReviews:", err);
+            return {
+                status: 500, // Internal Server Error
+                body: {
+                    error: "Erro interno do servidor.",
+                    detalhes: err.message
+                }
             };
         }
     }

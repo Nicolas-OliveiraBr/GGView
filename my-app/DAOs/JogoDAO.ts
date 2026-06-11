@@ -1,5 +1,4 @@
 import { Collection, ObjectId } from 'mongodb';
-import { error } from 'node:console';
 
 export interface IJogo {
     _id: ObjectId
@@ -141,7 +140,7 @@ export default class jogoDAO {
             }
         } catch (err: any) {
             if (err.name === 'MongoNetworkError' || err.name === 'MongoServerSelectionError' || err.message.includes('topology')) {
-                console.error("Erro de rede: O banco de dados parece estar offline.", error);
+                console.error("Erro de rede: O banco de dados parece estar offline.", err);
                 return {
                     status: 503, // Service Unavailable
                     body: { error: "Não foi possível conectar ao banco de dados. Verifique a sua internet e tente novamente mais tarde." }
@@ -156,7 +155,38 @@ export default class jogoDAO {
                 };
             }
 
-            console.error("Erro não esperado na função IdentificarReview:", error);
+            console.error("Erro não esperado na função IdentificarReview:", err);
+            return {
+                status: 500, // Internal Server Error
+                body: {
+                    error: "Erro interno do servidor.",
+                    detalhes: err.message
+                }
+            };
+        }
+    }
+
+    static async getGame(collection: Collection<IJogo>, id_igdb: string) {
+        try {
+            const res = await collection.findOne({id_igdb: id_igdb}, {projection: {_id: 0, id_igdb: 0}});
+            if(res === null) {
+                const res2 = await this.addGame(collection, id_igdb);
+                return {
+                    aviso: "Jogo não encontrado no banco de dados do GGView e será adicionado",
+                    res: res2
+                };
+            }
+            return res;
+        } catch(err: any) {
+            if (err.name === 'MongoNetworkError' || err.name === 'MongoServerSelectionError' || err.message.includes('topology')) {
+                console.error("Erro de rede: O banco de dados parece estar offline.", err);
+                return {
+                    status: 503, // Service Unavailable
+                    body: { error: "Não foi possível conectar ao banco de dados. Verifique a sua internet e tente novamente mais tarde." }
+                };
+            }
+
+            console.error("Erro não esperado na função getGame:", err);
             return {
                 status: 500, // Internal Server Error
                 body: {

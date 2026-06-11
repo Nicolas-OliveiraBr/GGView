@@ -3,7 +3,6 @@ import { Router, Request, Response, NextFunction } from "express";
 import UserDAO from "../DAOs/UserDAO"
 import {IUser} from "../DAOs/UserDAO"
 import { Collection, MongoClient } from "mongodb";
-import { error } from "node:console";
 import * as bcrypt from "bcrypt"
 
 //peso do hash de senha
