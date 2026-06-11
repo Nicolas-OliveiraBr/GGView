@@ -10,11 +10,15 @@
           <h5 class="text-section">Jogos Populares</h5>
 
           <div class="games-row">
-            <%- include('partials/cardSwiper', { swiperClass: 'popular-games-slider' , direction: 'horizontal' ,
-              slidesPerView: 5, partial: 'cardGame' , items: [ {rating: 5, title: 'Jogo 1' }, {rating: 4,
-              title: 'Jogo 2' }, {rating: 3, title: 'Jogo 3' }, {rating: 3, title: 'Jogo 4' }, {rating: 3,
-              title: 'Jogo 5' }, {rating: 3, title: 'Jogo 6' }, {rating: 3, title: 'Jogo 7' }, ] }) %>
-          </div>
+            <% if (locals.popularGames && popularGames.length > 0) { %>
+            <%- include('partials/cardSwiper', { 
+              swiperClass: 'recentes-games-slider', 
+              direction: 'horizontal',
+              slidesPerView: 5, 
+              partial: 'cardGame', 
+              items: popularGames 
+              }) %>
+          <% } %>
 
         </section>
 
@@ -23,10 +27,15 @@
           <h5 class="text-section">Lançamentos</h5>
 
           <div class="games-row">
-            <%- include('partials/cardSwiper', { swiperClass: 'recentes-games-slider' , direction: 'horizontal' ,
-              slidesPerView: 5, partial: 'cardGame' , items: [ {rating: 5, title: 'Jogo 1' }, {rating: 4,
-              title: 'Jogo 2' }, {rating: 3, title: 'Jogo 3' }, {rating: 3, title: 'Jogo 4' }, {rating: 3,
-              title: 'Jogo 5' }, {rating: 5, title: 'Jogo 6' }, {rating: 3, title: 'Jogo 7' }, ] }) %>
+           <% if (locals.recentesGames && recentesGames.length > 0) { %>
+            <%- include('partials/cardSwiper', { 
+              swiperClass: 'recentes-games-slider', 
+              direction: 'horizontal',
+              slidesPerView: 5, 
+              partial: 'cardGame', 
+              items: recentesGames 
+              }) %>
+          <% } %>
           </div>
 
         </section>

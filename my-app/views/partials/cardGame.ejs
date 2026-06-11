@@ -1,7 +1,14 @@
 <a href="/games/<%= title %>" class="thumbCard-link">
   <div class="card card-custom bg-dark text-white">
-    <img src="https://upload.wikimedia.org/wikipedia/pt/d/d8/Capa_de_Omori.jpeg" class="card-img" alt="...">
-    <!-- imagem teste -->
+    <div class="thumbTile">
+      <img src="<%= item.coverUrl %>" alt="<%= item.name %>" class="thumbTileImg">
+      <div class="card-info">
+        <p>
+          <%= item.name %>
+        </p>
+      </div>
+    </div>
+
     <div class="card-img-overlay d-flex align-items-center"></div>
     <div class="card-content">
       <span class="rating">4.5</span>

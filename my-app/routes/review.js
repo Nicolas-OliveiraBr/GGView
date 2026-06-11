@@ -4,7 +4,7 @@ var router = express.Router();
 // salvar a review que vem do formulário do modal de review
 router.post('/create', async(req, res) => {
     try {
-    const { nameGame, reviewText, rating, authorName } = req.body;
+    const { gameRef, descricao, avaliacao, userRef } = req.body;
     
      const newReview = await Review.create({
             gameId,

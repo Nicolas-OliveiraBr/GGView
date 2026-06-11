@@ -7,27 +7,27 @@
 <script src="/js/starsRating.js"></script>
 -->
 
-<div class="modal fade" id="modal-<%= locals.nameGame.replace(/\s+/g, '-') %>"  data-bs-backdrop="static" tabindex="-1">
+<div class="modal fade" id="modal-<%= item.id %>"  data-bs-backdrop="static" tabindex="-1">
   <div class="modal-dialog">
     <form id="createReviewForm" class="modal-content modal-review">
 
       <div class="modal-header">
-        <h1 class="modal-title fs-6" id="label-<%= locals.nameGame %>">Escrevendo review...</h1>
+        <h1 class="modal-title fs-6" id="label-<%= item.nameGame %>">Escrevendo review...</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
       <div class="modal-body">
         <section class="modal-game">
-          <img src="<%= locals.gameCover || '/images/default.jpg' %>" class="game-img rounded">
+          <img src="<%= item.gameCover || '/images/default.jpg' %>" class="game-img rounded">
         </section>
         
         <section class="modal-info">
           <h1 class="fs-5 modal-description text-white fw-bold">
-            <%= locals.nameGame || 'Nome do Jogo' %> <span>(<%= locals.year || '----' %>)</span>
+            <%= item.nameGame || 'Nome do Jogo' %> <span>(<%= item.year || '----' %>)</span>
           </h1>
 
-          <input type="hidden" name="gameId" value="<%= locals.gameId %>">
-          <input type="hidden" name="nameGame" value="<%= locals.nameGame %>">
+          <input type="hidden" name="gameId" value="<%= item.gameId %>">
+          <input type="hidden" name="nameGame" value="<%= item.nameGame %>">
 
           <div class="mb-3">
             <label for="reviewTextarea" class="form-label">Sua Review</label>

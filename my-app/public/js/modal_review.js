@@ -3,21 +3,22 @@ const reviewForm = document.getElementById('createReviewForm');
 reviewForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const formData = {
-        gameId: reviewForm.gameId.value,
-        nameGame: reviewForm.nameGame.value,
-        reviewText: reviewForm.reviewText.value,
-        rating: document.getElementById('selectedRating').value,
-        authorName: "<%= authorName %>"
+    const formData = new FormData(form);
+    const data = {
+        gameRef: formData.get('gameId'),
+        descricao: formData.get('reviewText'),
+        avaliacao: Number(formData.get('rating')),
+        curtidas: 0,
+        data: new Date()
     };
 
     try {
-        const response = await fetch('/api/reviews', { // Colocar a API
+        const response = await fetch('/create', { // Colocar a API
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(formData)
+            body: JSON.stringify(data)
         });
 
         if (response.ok) {
