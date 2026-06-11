@@ -6,6 +6,10 @@ async function query(endpoint, body) {
 
     const token = await obterToken();
 
+    //console.log(token)
+
+    console.log(endpoint, body)
+    
     const response = await fetch(
         `https://api.igdb.com/v4/${endpoint}`,
         {
@@ -23,7 +27,11 @@ async function query(endpoint, body) {
         throw new Error(`IGDB Error: ${response.status}`);
     }
 
-    return await response.json();
+    const data = await response.json();
+
+    //console.log(JSON.stringify(data, null, 2));
+
+    return data;
 }
 
 module.exports = {
