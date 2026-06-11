@@ -1,24 +1,27 @@
-<a href="/games/<%= title %>" class="thumbCard-link">
-  <div class="card card-custom bg-dark text-white">
-    <div class="thumbTile">
-      <img src="<%= item.coverUrl %>" alt="<%= item.name %>" class="thumbTileImg">
-      <div class="card-info">
-        <p>
-          <%= item.name %>
-        </p>
-      </div>
-    </div>
+<% const nomeDoJogo = locals.name || locals.title || 'Jogo sem Nome'; %>
 
+<a href="/games/<%= encodeURIComponent(nomeDoJogo) %>" class="thumbCard-link">
+  <div class="card card-custom bg-dark text-white">
+
+    <% 
+      // A IGDB costuma retornar a propriedade 'cover' como um objeto contendo 'image_id'
+      const imageID = locals.cover?.image_id; 
+      // Substitua 't_cover_big' por 't_thumb' ou 't_720p' dependendo do tamanho que preferir
+      const srcImagem = imageID 
+        ? `https://images.igdb.com/igdb/image/upload/t_cover_big/${imageID}.jpg` 
+        : 'https://placehold.co/150x200?text=Sem+Capa';
+    %>
+    
+    <img src="<%= srcImagem %>" class="card-img" alt="<%= nomeDoJogo %>">
+    
     <div class="card-img-overlay d-flex align-items-center"></div>
     <div class="card-content">
+      <!-- Dica: Se a API trouxer a nota real, você pode usar locals.rating aqui -->
       <span class="rating">4.5</span>
       <div class="stars">
-        <% for(let i=1; i <=5; i++) { %>
-          <i class="
-          bi 
-          <%= i <= rating ? 'bi-star-fill star-filled' : 'bi-star-fill star-empty' %>
-        "></i>
-          <% } %>
+        <% for(let i=1; i <= 5; i++) { %>
+          <i class="bi <%= i <= 4 ? 'bi-star-fill star-filled' : 'bi-star-fill star-empty' %>"></i>
+        <% } %>
       </div>
     </div>
   </div>

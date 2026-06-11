@@ -2,11 +2,17 @@ var express = require('express');
 var router = express.Router();
 const igdbGames = require('../services/igdbGames'); 
 
-router.get('/:id', async function(req, res, next) {
-  try {
-    const gameId = req.params.id; 
-    
-    const dadosDoJogo = await igdbGames.buscarPorId(gameId); 
+router.get('/', function(req, res, next) {
+  res.render('games', {
+    title: `Games`,
+    exclusiveCSS: 'games.css' // Renderizando um arquivo CSS específico para essa página
+  })
+});
+
+router.get('/:name', function(req, res, next) {
+  try{
+  const game_name = req.params.name
+  const gameID = req.params.id
 
     res.render('games', { 
       title: dadosDoJogo.nameGame,
