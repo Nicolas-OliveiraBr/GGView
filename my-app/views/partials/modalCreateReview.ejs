@@ -12,22 +12,22 @@
     <form id="createReviewForm" class="modal-content modal-review">
 
       <div class="modal-header">
-        <h1 class="modal-title fs-6" id="label-<%= item.nameGame %>">Escrevendo review...</h1>
+        <h1 class="modal-title fs-6" id="label-<%= nameGame %>">Escrevendo review...</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
       <div class="modal-body">
         <section class="modal-game">
-          <img src="<%= item.gameCover || '/images/default.jpg' %>" class="game-img rounded">
+          <img src="<%= gameCover || '/images/default.jpg' %>" class="game-img rounded">
         </section>
         
         <section class="modal-info">
           <h1 class="fs-5 modal-description text-white fw-bold">
-            <%= item.nameGame || 'Nome do Jogo' %> <span>(<%= item.year || '----' %>)</span>
+            <%= nameGame || 'Nome do Jogo' %> <span>(<%= year || '----' %>)</span>
           </h1>
 
-          <input type="hidden" name="gameId" value="<%= item.gameId %>">
-          <input type="hidden" name="nameGame" value="<%= item.nameGame %>">
+          <input type="hidden" name="gameId" value="<%= gameId %>">
+          <input type="hidden" name="nameGame" value="<%= nameGame %>">
 
           <div class="mb-3">
             <label for="reviewTextarea" class="form-label">Sua Review</label>
