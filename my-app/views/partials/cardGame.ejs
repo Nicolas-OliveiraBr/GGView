@@ -1,12 +1,10 @@
 <% const nomeDoJogo = locals.name || locals.title || 'Jogo sem Nome'; %>
-
-<a href="/games/<%= encodeURIComponent(nomeDoJogo) %>" class="thumbCard-link">
+<% const idDoJogo = locals.id; %> <a href="/games/<%= idDoJogo %>" class="thumbCard-link">
   <div class="card card-custom bg-dark text-white">
 
     <% 
       // A IGDB costuma retornar a propriedade 'cover' como um objeto contendo 'image_id'
       const imageID = locals.cover?.image_id; 
-      // Substitua 't_cover_big' por 't_thumb' ou 't_720p' dependendo do tamanho que preferir
       const srcImagem = imageID 
         ? `https://images.igdb.com/igdb/image/upload/t_cover_big/${imageID}.jpg` 
         : 'https://placehold.co/150x200?text=Sem+Capa';
@@ -16,7 +14,6 @@
     
     <div class="card-img-overlay d-flex align-items-center"></div>
     <div class="card-content">
-      <!-- Dica: Se a API trouxer a nota real, você pode usar locals.rating aqui -->
       <span class="rating">4.5</span>
       <div class="stars">
         <% for(let i=1; i <= 5; i++) { %>

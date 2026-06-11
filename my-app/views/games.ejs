@@ -12,32 +12,99 @@
                 <div class="game-background-top"> <!-- Onde o trapézio é definido -->
                     <section class="game-card"> <!-- Criando o espaço onde o card estará -->
                         <div class="game-info"> <!-- Criando o espaço para informações específicas do jogo -->
-                            <img id="game-banner" src="https://images.igdb.com/igdb/image/upload/t_cover_big/co8fu7.webp" alt="Game Banner">
+                            <img id="game-banner" src="<%= game.cover ? `https://images.igdb.com/igdb/image/upload/t_cover_big/${game.cover.image_id}.webp` : '/images/default.jpg' %>" alt="Capa de <%= game.name %>">
                             <div class="game-spef">
                                 <div class="name-and-class-ind">
-                                    <h3 id="game-name">Minecraft</h3>
-                                    <img id="class-ind" src="https://logodownload.org/wp-content/uploads/2017/07/classificacao-livre-logo.png" alt="Classificação Indicativa">
+                                    <h3 id="game-name"><%= game.name %></h3>
+                                    <% 
+                                        let srcClassificacao = "https://logodownload.org/wp-content/uploads/2017/07/classificacao-livre-logo.png";
+                                        let altClassificacao = "Classificação Indicativa Livre";
+
+                                        if (game.age_ratings && game.age_ratings.length > 0) {
+                                            // CORRIGIDO: Nome da variável ajustado sem o espaço em branco
+                                            const idMapeamentoFixo = {
+                                                // IDs de Classificação 18 anos / Mature (The Witcher 3, GTA V, Cyberpunk)
+                                                32441: 18, 222156: 18, 67455: 18, 46963: 18, 78138: 18, 78139: 18, 187952: 18, 1020: 18, 267329: 18, 145325: 18,
+                                                // IDs de Classificação 16 anos / Teen altos
+                                                32546: 16, 123843: 16, 267591: 16, 267592: 16, 115276: 16, 14353: 16,
+                                                // IDs de Classificação 14 anos (Ex: Red Dead Redemption 1 em alguns registros ou FPS mais leves) 
+                                                123842: 14, 46962: 14,
+                                                // IDs de Classificação 12 anos
+                                                3: 12, 7: 12, 2755: 12, 2756: 12, 115277: 12, 28540: 12,
+                                                // IDs de Classificação 10 anos
+                                                4: 10, 267328: 10, 41384: 10,
+                                                // IDs de Classificação Livre
+                                                1: 0, 6: 0, 115278: 0
+                                            }
+                                            // Verifica se algum dos IDs retornados está no nosso mapa fixo
+                                            let idadeIdentificada = null;
+                                            for (let rating of game.age_ratings) {
+                                                if (idMapeamentoFixo[rating.id]) {
+                                                    idAge = idMapeamentoFixo[rating.id];
+                                                    idadeIdentificada = idAge;
+                                                    break; 
+                                                }
+                                            }
+
+                                            // Se identificou por ID fixo ou se a API resolver mandar os campos normais
+                                            const classInd = game.age_ratings.find(r => r.category === 7);
+                                            const esrb = game.age_ratings.find(r => r.category === 1);
+
+                                            if (idadeIdentificada === 18 || (classInd && classInd.rating === 6) || (esrb && esrb.rating === 10)) {
+                                                srcClassificacao = "https://logodownload.org/wp-content/uploads/2017/07/classificacao-18-anos-logo.png";
+                                                altClassificacao = "Classificação Indicativa 18 anos";
+                                            } else if (idadeIdentificada === 16 || (classInd && classInd.rating === 5) || (esrb && esrb.rating === 9)) {
+                                                srcClassificacao = "https://logodownload.org/wp-content/uploads/2017/07/classificacao-16-anos-logo.png";
+                                                altClassificacao = "Classificação Indicativa 16 anos";
+                                            } else if (idadeIdentificada === 14 || (classInd && classInd.rating === 4)) {
+                                                srcClassificacao = "https://logodownload.org/wp-content/uploads/2017/07/classificacao-14-anos-logo.png";
+                                                altClassificacao = "Classificação Indicativa 14 anos";
+                                            } else if (idadeIdentificada === 12 || (classInd && classInd.rating === 3) || (esrb && esrb.rating === 8)) {
+                                                srcClassificacao = "https://logodownload.org/wp-content/uploads/2017/07/classificacao-12-anos-logo.png";
+                                                altClassificacao = "Classificação Indicativa 12 anos";
+                                            } else if (idadeIdentificada === 10 || (classInd && classInd.rating === 2) || (esrb && esrb.rating === 7)) {
+                                                srcClassificacao = "https://logodownload.org/wp-content/uploads/2017/07/classificacao-10-anos-logo.png";
+                                                altClassificacao = "Classificação Indicativa 10 anos";
+                                            }
+                                        }
+                                    %>
+                                    
+                                    <img id="class-ind" src="<%= srcClassificacao %>" alt="<%= altClassificacao %>">
                                 </div>
                                 <div class="developer-and-release">
-                                    <p id="paragraph-info"><strong>Lançamento:</strong> 18 de novembro de 2011 (versão oficial)</p>
+                                    <p id="paragraph-info"><strong>Lançamento:</strong> <%= game.first_release_date ? new Date(game.first_release_date * 1000).toLocaleDateString('pt-BR') : 'Não informada' %></p>
                                     <p id="paragraph-info">
-                                        <strong>Desenvolvedora:</strong> <a href="#">Mojang Studios</a>
+                                        <strong>Desenvolvedora:</strong> <a href="#">
+                                            <% 
+                                                // Filtrando a empresa envolvida que está marcada como desenvolvedora
+                                                const devCompany = game.involved_companies ? game.involved_companies.find(c => c.developer) : null;
+                                            %>
+                                            <%= devCompany ? devCompany.company.name : 'Não informada' %>
+                                        </a>
                                     </p>
                                 </div>
                                 <div class="genres">
                                     <p><strong>Gêneros:</strong></p>
                                     <div class="genre-list">
-                                        <a href="#">Simulation</a>
-                                        <a href="#">Adventure</a>
-                                        <a href="#">Arcade</a>
+                                        <% if (game.genres && game.genres.length > 0) { %>
+                                            <% game.genres.forEach(genre => { %>
+                                                <a href="#"><%= genre.name %></a>
+                                            <% }) %>
+                                        <% } else { %>
+                                                <span>Não informado</span>
+                                        <% } %>
                                     </div>
                                 </div>
                                 <div class="platforms">
                                     <p><strong>Plataformas: </strong></p>
                                     <div class="platform-list">
-                                        <a href="#">Android</a>
-                                        <a href="#">Windows</a>
-                                        <button>Ver Mais</button>
+                                        <% if (game.platforms && game.platforms.length > 0) { %>
+                                            <% game.platforms.forEach(platform => { %>
+                                                <a href="#"><%= platform.name %></a>
+                                        <% }) %>
+                                        <% } else { %>
+                                                <span>Não informado</span>
+                                        <% } %>
                                     </div>
                                 </div>
                             </div>
@@ -46,7 +113,7 @@
                                     <i class="bi bi-share-fill"></i>
                                 </button>
                                 <div class="user-action-buttons">
-                                    <button type="button" data-bs-toggle="modal" data-bs-target="#modal-<%= item.id %>">
+                                    <button type="button" data-bs-toggle="modal" data-bs-target="#modal-game-<%= game.id %>">
                                         <i class="bi bi-plus"></i>
                                     </button>
                                     <button>
@@ -64,9 +131,7 @@
 
                         <div class="game-description">
                             <div class="description d-flex align-items-center opacity-100" style="border-left: 4px solid;">
-                                <p class="ms-3">
-                                    Minecraft focuses on allowing the player to explore, interact with, and modify a dynamically-generated map made of one-cubic-meter-sized blocks. In addition to blocks, the environment features plants, mobs, and items. Some activities in the game include mining for ore, fighting hostile mobs, and crafting new blocks and tools by gathering various resources found in the game. The game's open-ended model allows players to create structures, creations, and artwork on various multiplayer servers or their single-player maps. Other features include redstone circuits for logic computations and remote actions, minecarts and tracks, and a mysterious underworld called the Nether. A designated but completely optional goal of the game is to travel to a dimension called the End, and defeat the ender dragon.
-                                </p>
+                                <p class="ms-3"> <%= game.summary ? game.summary : 'Este jogo não possui descrição.' %></p>
                             </div>
                         </div>
                         <button id="show-more">
@@ -86,22 +151,37 @@
                 <div class="image-carousel carousel-style ">
                     <div id="imageCarousel" class="carousel slide">
                         <p class="carousel-tag">Imagens</p>
+                        
                         <div class="carousel-indicators">
-                            <button type="button" data-bs-target="#imageCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                            <button type="button" data-bs-target="#imageCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                            <button type="button" data-bs-target="#imageCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                            <% if (game.screenshots && game.screenshots.length > 0) { %>
+                                <% game.screenshots.forEach((screenshot, index) => { %>
+                                    <button type="button" 
+                                            data-bs-target="#imageCarousel" 
+                                            data-bs-slide-to="<%= index %>" 
+                                            class="<%= index === 0 ? 'active' : '' %>" 
+                                            aria-current="<%= index === 0 ? 'true' : 'false' %>" 
+                                            aria-label="Slide <%= index + 1 %>">
+                                    </button>
+                                <% }) %>
+                            <% } else { %>
+                                <button type="button" data-bs-target="#imageCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <% } %>
                         </div>
+
                         <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="https://images.igdb.com/igdb/image/upload/t_720p/ar4nm4.webp" class="d-block w-100" alt="Game Image 1">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="https://images.igdb.com/igdb/image/upload/t_720p/ar4nm5.webp" class="d-block w-100" alt="Game Image 2">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="https://images.igdb.com/igdb/image/upload/t_720p/ar4qpp.webp" class="d-block w-100" alt="Game Image 2">
-                            </div>
+                            <% if (game.screenshots && game.screenshots.length > 0) { %>
+                                <% game.screenshots.forEach((screenshot, index) => { %>
+                                    <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
+                                        <img src="https://images.igdb.com/igdb/image/upload/t_720p/<%= screenshot.image_id %>.webp" class="d-block w-100" alt="Game Image">
+                                    </div>
+                                <% }) %>
+                            <% } else { %>
+                                <div class="carousel-item active">
+                                    <img src="/images/default-placeholder.jpg" class="d-block w-100" alt="Sem imagens">
+                                </div>
+                            <% } %>
                         </div>
+                        
                         <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
                             <i class="carousel-button bi bi-caret-left-fill"></i>
                             <span class="visually-hidden">Previous</span>
@@ -116,22 +196,46 @@
                 <div class="video-carousel carousel-style ">
                     <div id="videoCarousel" class="carousel slide">
                         <p class="carousel-tag">Trailers</p>
+                        
                         <div class="carousel-indicators">
-                            <button type="button" data-bs-target="#videoCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                            <button type="button" data-bs-target="#videoCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                            <button type="button" data-bs-target="#videoCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                            <% if (game.videos && game.videos.length > 0) { %>
+                                <% game.videos.forEach((video, index) => { %>
+                                    <button type="button" 
+                                            data-bs-target="#videoCarousel" 
+                                            data-bs-slide-to="<%= index %>" 
+                                            class="<%= index === 0 ? 'active' : '' %>" 
+                                            aria-current="<%= index === 0 ? 'true' : 'false' %>" 
+                                            aria-label="Slide <%= index + 1 %>">
+                                    </button>
+                                <% }) %>
+                            <% } else { %>
+                                <button type="button" data-bs-target="#videoCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <% } %>
                         </div>
+
                         <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <iframe class="carousel-video" src="https://www.youtube.com/embed/MmB9b5njVbA?si=OwfrW6r5RrE68J34" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                            </div>
-                            <div class="carousel-item">
-                                <iframe class="carousel-video" src="https://www.youtube.com/embed/vyr3XZrZssk?si=wZn9bxddoC3EEmzN" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                            </div>
-                            <div class="carousel-item">
-                                <iframe class="carousel-video" src="https://www.youtube.com/embed/D2Z9oKTzzrM?si=P9YgQiSOh6K2Oby4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                            </div>
+                            <% if (game.videos && game.videos.length > 0) { %>
+                                <% game.videos.forEach((video, index) => { %>
+                                    <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
+                                        <iframe class="carousel-video" 
+                                                src="https://www.youtube.com/embed/<%= video.video_id %>" 
+                                                title="YouTube video player" 
+                                                frameborder="0" 
+                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                                referrerpolicy="strict-origin-when-cross-origin" 
+                                                allowfullscreen>
+                                        </iframe>
+                                    </div>
+                                <% }) %>
+                            <% } else { %>
+                                <div class="carousel-item active">
+                                    <div class="d-flex align-items-center justify-content-center bg-dark text-white w-100 carousel-video">
+                                        <p>Nenhum trailer disponível para este jogo.</p>
+                                    </div>
+                                </div>
+                            <% } %>
                         </div>
+
                         <button class="carousel-control-prev" type="button" data-bs-target="#videoCarousel" data-bs-slide="prev">
                             <i class="carousel-button bi bi-caret-left-fill"></i>
                             <span class="visually-hidden">Previous</span>
@@ -162,5 +266,8 @@
     <script src="/js/likeRating.js"></script>
     <script src="/js/starsRating.js"></script>
 
-<%- include('partials/modalCreateReview', { nameGame: 'Nome do Jogo', year: '2024', gameCover: '/images/default.jpg' }) %>
+<%- include('partials/modalCreateReview', { 
+    nameGame: game.name, 
+    year: game.first_release_date ? new Date(game.first_release_date * 1000).getFullYear() : 'N/A',
+    gameCover: game.cover ? `https://images.igdb.com/igdb/image/upload/t_cover_big/${game.cover.image_id}.webp` : '/images/default.jpg' }) %>
 <%- include('./partials/_footer') %>

@@ -25,8 +25,8 @@ class igdbGames {
         return await query(
             "games",
             `fields name, summary, first_release_date, age_ratings.rating, age_ratings.category,
-            genres.name, platforms.name, cover.image_id, screenshots.image_id, involved_companies.company.name,
-            involved_companies.developer;
+            genres.name, platforms.name, cover.image_id, screenshots.image_id, videos.video_id, 
+            involved_companies.company.name, involved_companies.developer;
             where id = ${id};`
         )
     }
