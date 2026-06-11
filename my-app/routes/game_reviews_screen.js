@@ -9,10 +9,18 @@ router.get('/', function(req, res, next) {
   })
 });
 
-router.get('/:name', function(req, res, next) {
-  try{
-  const game_name = req.params.name
-  const gameID = req.params.id
+router.get('/:name', async function(req, res, next) {
+  try {
+    const nameGame = req.params.name;
+
+    const dadosDoJogo = await igdbGames.buscarPorNome(nameGame); 
+
+    if (!dadosDoJogo) {
+      return res.status(404).render('error', { 
+        message: 'Jogo não encontrado', 
+        error: { status: 404, stack: '' } 
+      });
+    }
 
     res.render('games', { 
       title: dadosDoJogo.nameGame,
@@ -20,8 +28,7 @@ router.get('/:name', function(req, res, next) {
       exclusiveCSS: 'games.css'
     });
   } catch (error) {
-    console.error("Erro ao buscar jogo:", error);
-    res.status(404).render('error', { message: 'Jogo não encontrado' });
+    res.status(500).render('error', { message: 'Erro ao carregar jogo', error });
   }
 });
 
