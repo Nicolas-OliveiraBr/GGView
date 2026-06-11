@@ -10,7 +10,10 @@
 <div class="modal fade" id="modal-<%= item.id %>"  data-bs-backdrop="static" tabindex="-1">
   <div class="modal-dialog">
     <form id="createReviewForm" class="modal-content modal-review">
-
+    <input type="hidden" name="gameId" value="<%= item.id %>">
+    <textarea name="reviewText" placeholder="Escrever review..."></textarea>
+    <input type="hidden" name="rating" id="rating-input-<%= item.id %>" value="0">
+    
       <div class="modal-header">
         <h1 class="modal-title fs-6" id="label-<%= item.nameGame %>">Escrevendo review...</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

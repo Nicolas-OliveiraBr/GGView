@@ -3,14 +3,15 @@ const reviewForm = document.getElementById('createReviewForm');
 reviewForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const formData = new FormData(form);
+    const formData = new FormData(reviewForm); 
     const data = {
         gameRef: formData.get('gameId'),
         descricao: formData.get('reviewText'),
         avaliacao: Number(formData.get('rating')),
-        curtidas: 0,
-        data: new Date()
+        userRef: "Nome do Usuário",
+        curtidas: 0
     };
+
 
     try {
         const response = await fetch('/create', { // Colocar a API
@@ -23,8 +24,8 @@ reviewForm.addEventListener('submit', async (e) => {
 
         if (response.ok) {
             reviewForm.reset(); 
-            // Fecha o modal usando a API do Bootstrap
-            const modalElement = document.getElementById('staticBackdrop');
+            
+            const modalElement = reviewForm.closest('.modal');
             const modalInstance = bootstrap.Modal.getInstance(modalElement);
             modalInstance.hide(); 
 
