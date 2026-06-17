@@ -6,7 +6,7 @@ class igdbGames {
         return await query(
             "games",
             `search "${nome}";
-            fields name, cover.image_id; 
+            fields id, name, cover.image_id; 
             limit 1;` //, first_release_date, platforms.name, genres.name, summary
         )
     }
@@ -14,7 +14,7 @@ class igdbGames {
     static async buscarPopulares () {
         return await query(
             "games",
-            `fields name, cover.image_id;
+            `fields id, name, cover.image_id;
             where rating != null;
             sort rating desc;
             limit 20;`
@@ -34,7 +34,7 @@ class igdbGames {
     static async bucarLançamentos () {
         return await query(
             "games",
-            `fields name, cover.image_id;
+            `fields id, name, cover.image_id;
             where first_release_date > ${Math.floor(Date.now() / 1000)};
             sort first_release_date asc;
             limit 20;`
@@ -45,7 +45,7 @@ class igdbGames {
         return await query(
             "games",
             `
-            fields name, cover.image_id, first_release_date;
+            fields id, name, cover.image_id, first_release_date;
             where first_release_date != null;
             sort first_release_date desc;
             limit 20;

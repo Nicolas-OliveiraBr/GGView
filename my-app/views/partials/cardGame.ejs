@@ -1,5 +1,5 @@
 <% const nomeDoJogo = locals.name || locals.title || 'Jogo sem Nome'; %>
-<% const idDoJogo = locals.id; %> <a href="/games/<%= idDoJogo %>" class="thumbCard-link">
+<% const idDoJogo = locals.id || locals.game?.id || locals._id; %> <a href="/games/<%= idDoJogo %>" class="thumbCard-link">
   <div class="card card-custom bg-dark text-white">
 
     <% 

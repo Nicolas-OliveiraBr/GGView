@@ -113,9 +113,6 @@
                                     <i class="bi bi-share-fill"></i>
                                 </button>
                                 <div class="user-action-buttons">
-                                    <button type="button" data-bs-toggle="modal" data-bs-target="#modal-game-<%= game.id %>">
-                                        <i class="bi bi-plus"></i>
-                                    </button>
                                     <button>
                                         <i class="bi bi-play-fill"></i>
                                     </button>
@@ -143,6 +140,9 @@
                         <div class="played"></div>
                         <div class="liked"></div>
                         <div class="favourited"></div>
+                        <button class="addReview addReviewButton" type="button" data-bs-toggle="modal" data-bs-target="#modal-game-<%= game.id %>">
+                            <i class="bi bi-plus"></i> <span class="buttonTag">Criar Review</span>
+                        </button>
                     </div>
                 </div>
             </div>
