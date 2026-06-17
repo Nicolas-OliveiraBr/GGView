@@ -7,12 +7,12 @@ router.post('/create', async(req, res) => {
     const { gameRef, descricao, avaliacao, userRef } = req.body;
     
      const newReview = await Review.create({
-            gameId,
             nameGame,
             reviewText,
             rating: Number(rating),
             isFavorite: isFavorite === 'true', // Converte string para booleano
-            authorName: authorName || "Usuário",
+            authorName: authorN
+            gameId,ame || "Usuário",
             createdAt: new Date()
     });
     

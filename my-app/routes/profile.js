@@ -28,7 +28,7 @@ router.get('/:username', function(req, res) {
     res.render('profile', {
         title: `Perfil de ${user}`,
         authorName: user,
-        exclusiveCSS: 'profile.css',
+        exclusiveCSS: 'profile',
         fakeReviews: sortedReviews,
         authorDescription: authorDescription
     });

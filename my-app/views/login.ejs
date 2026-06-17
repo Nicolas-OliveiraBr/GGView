@@ -1,8 +1,26 @@
-<%- include('./partials/_header') %>
+<%- include('partials/_header') %>
 
-   <main class="w-100 m-auto form-container" style="max-width: 350px;"> 
-    <div class="container mt-5">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Login</button>
+   <main> 
+    <div class="login">
+        <div class="introduction">
+            <div class="image-display">
+                <div class="main-image-wrapper">
+                    <img class="main-image" src="https://images.igdb.com/igdb/image/upload/t_720p/ar4nm5.webp" alt="Main Game Banner">
+                </div>
+                <div class="image-top-wrapper">
+                    <img class="image-top" src="https://images.igdb.com/igdb/image/upload/t_720p/ar4rzl.webp" alt="Game Banner 1">
+                </div>
+                <div class="image-bottom-wrapper">
+                    <img class="image-bottom" src="https://images.igdb.com/igdb/image/upload/t_720p/ar5tpp.webp" alt="Game Banner 2">
+                </div>
+            </div>
+
+            <div class="login-title">
+                <h1>Bem vindo.</h1>
+                <p>Seja bem vindo á plataforma de avaliação de games recém lançada da Web. Um trabalho, cinco pessoas e um sonho: Avaliar nossos jogos favoritos. :D</p>
+            </div>
+        </div>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Faça login</button>
         <div class="modal" id="myModal">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -23,7 +41,7 @@
                             <div class="mb-3">
                                 <label class="form-label fw-bold">Senha</label>
                                 <div class="form-floating">
-                                    <input type="password" class="form-control" id="floatingPassword" placeholder="Sua senha">
+                                    <input type="senha" class="form-control" id="floatingPassword" placeholder="Sua senha">
                                     <label for="floatingPassword">mínimo 6 caracteres</label>
                                 </div>
                             </div>
@@ -44,4 +62,4 @@
     </div>
     </main>
 
-<%- include('./partials/_footer') %>
+<%- include('partials/_footer') %>

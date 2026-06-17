@@ -15,7 +15,7 @@ router.get('/', async function(req, res, next) {
 
   res.render('index', { 
     title: 'Home',
-    exclusiveCSS: 'home.css',
+    exclusiveCSS: 'home',
     fakeReviews: fakeReviews,
     dadosDosJogos: popularGames,
     lancamentos: toBeReleased

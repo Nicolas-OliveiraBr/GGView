@@ -47,7 +47,7 @@ router.get('/:id', async function(req, res, next) {
   
       res.render('games', { 
         title: gameData.name,
-        exclusiveCSS: 'games.css',
+        exclusiveCSS: 'games',
         game: gameData,
         fakeReviews: fakeReviews,
         gameDesc: gameDescTranslation
