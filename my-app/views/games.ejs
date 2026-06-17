@@ -128,7 +128,7 @@
 
                         <div class="game-description">
                             <div class="description d-flex align-items-center opacity-100" style="border-left: 4px solid;">
-                                <p class="ms-3"> <%= game.summary ? game.summary : 'Este jogo não possui descrição.' %></p>
+                                <p class="ms-3"> <%= gameDesc ? gameDesc : 'Este jogo não possui descrição.' %></p>
                             </div>
                         </div>
                         <button id="show-more">
@@ -249,16 +249,32 @@
             </section>
         </div>
         <section class="review-lobby">
-            <div class="shadow-limit-bottom">
-                <div class="review-background-bottom"></div>
-            </div>
-
+            <div class="reviews-top">
+                <div class="shadow-limit-bottom">
+                    <div class="review-background-bottom"></div>
+                </div>
+    
                 <div class="review-background-top">
                     <div class="reviews-title">
                         <i id="review-icon" class="bi bi-star-fill"></i>
-                        <h2>Avaliações de Minecraft</h2>
+                        <h2>Avaliações de <%= game.name %></h2>
                     </div>
                 </div>
+            </div>
+
+            <div class="game-reviews">
+                <% if (locals.fakeReviews && fakeReviews.length > 0) { %>
+                    <% fakeReviews.slice(0, 5).forEach(review => { %>
+                        <%- include('partials/review', { 
+                            rating: review.rating,
+                            authorName: review.authorName, 
+                            reviewText: review.reviewText 
+                        }) %>
+                    <% }) %>
+                <% } else { %>
+                    <p>Sem avaliações até o momento.</p> 
+                <% } %>
+            </div>
         </section>
     </main>
 

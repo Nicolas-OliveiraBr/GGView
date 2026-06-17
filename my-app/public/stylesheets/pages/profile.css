@@ -17,9 +17,8 @@ main {
   display: flex;
   background-color: #8C0002;
   border-radius: 15px;
-  padding: 10px;
+  padding: 10px 10px 10px 0px;
   margin: 10px;
-  min-width: 150px;
   height: auto;
   justify-content: space-around;
   align-items: center;
@@ -27,8 +26,8 @@ main {
 
 .stat-item {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  gap: 10px;
 }
 
 .text-stat {
@@ -44,8 +43,9 @@ main {
 
 .stats-row {
   display: flex;
+  flex-direction: column;
   gap: 25px;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   flex-direction: row;
 }

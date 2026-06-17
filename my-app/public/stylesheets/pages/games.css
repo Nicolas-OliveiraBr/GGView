@@ -82,13 +82,14 @@ body {
 
 
 .review-lobby {
-    min-width: 100vw;
-    width: auto; height: 100vh;
+    width: 100vw; height: 100vh;
     background-image: linear-gradient(to right, #3d0001 25%, transparent);
     position: relative;
     display: flex;
     flex-direction: column;
     position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .reviews-title {
@@ -573,4 +574,23 @@ body {
 .addReviewButton:hover {
     background-color: #c20000;
     transform: scale(1.1);
+}
+
+
+
+
+
+
+
+
+
+
+
+.game-reviews {
+    margin-top: 10%;
+    width: 100%; height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
 }
