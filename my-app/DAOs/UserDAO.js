@@ -1,23 +1,9 @@
-import { Collection, ObjectId } from 'mongodb';
-import { isEmail } from "validator"
+const validator = require("validator")
+const jwt = require("jsonwebtoken")
+const bcrypt = require("bcrypt")
 
-
-//Modelo de usuário
-export interface IUser {
-    userName: string
-    email: string
-    senhaHash: string
-    bio?: string
-    dataNasc: Date
-    seguidores: ObjectId[]
-    seguindo: ObjectId[]
-    jogosCurt: string[]
-    jogosFav: string[]
-    jogados: string[]
-}
-
-export default class UserDAO {
-    static async cadastrarUsuario(collection: Collection<IUser>, user: IUser) {
+class UserDAO {
+    static async cadastrarUsuario(collection, user) {
         //LIDANDO: casos de dados inválidos/faltando
         if (!user.userName || !user.email || !user.senhaHash || !user.dataNasc) {
             return { error: "Campo obrigatório(userName, email, senhaHash e/ou dataNasc) faltando" }
@@ -27,7 +13,7 @@ export default class UserDAO {
             return { error: "Data de nascimento inválida" }
         }
 
-        if (!isEmail(user.email)) {
+        if (!validator.isEmail(user.email)) {
             return { error: "Email inválido" }
         }
         //
@@ -36,7 +22,7 @@ export default class UserDAO {
             const result = await collection.insertOne(user)
             return result
 
-        } catch (err: any) {
+        } catch (err) {
             console.error("Erro em UserDAO.cadastrarUser", err)
             //LIDANDO: erros internos no servidor do banco de dados
             //erro de repetição de dado do tipo 
@@ -63,8 +49,57 @@ export default class UserDAO {
         }
     }
 
+    static async loggin(collection, tentativa) {
+        if (!tentativa.senha) {
+            console.error("Campo de senha não pode estar vazio!")
+            return { 
+                status: 422,
+                err: "Campo de senha não pode estar vazio!" }
+        }
+        if (!tentativa.email) {
+            console.error("Campo de email não pode estar vazio!")
+            return { 
+                status: 422,
+                err: "Campo de email não pode estar vazio!" }
+        }
+
+
+        try {
+            const user = await collection.findOne({ email: tentativa.email })
+            if (!user) {
+                return { 
+                    status: 404,
+                    res: "Usuário inexiste." }
+            }
+
+            const check_password = await bcrypt.compare(tentativa.senha, user.senhaHash);
+
+            if (!check_password) {
+                return { 
+                    status: 422,
+                    error: "Senha vazia." }
+            }
+
+            const SECRET = process.env.TOKEN_SECRET;
+
+            const token = jwt.sign({ id: user._id, userName: user.userName }, SECRET, { expiresIn: '30d' })
+
+            return{
+                status: 200, 
+                res: "Autenticação realizada com sucesso!",
+                token
+            }
+        } catch (err) {
+            console.error("Erro em UserDAO.login:", err);
+            return {
+                status: 500,
+                error: "Erro interno do servidor"
+            }
+        }
+    }
+
     //OBS: este código servira para adicionar a qualquer lista
-    static async add_delGameToList(collection: Collection<IUser>, email: string, lista: string, jogo: string, isAdding: boolean) {
+    static async add_delGameToList(collection, email, lista, jogo, isAdding) {
         const operador = isAdding ? "$addToSet" : "$pull"
         try {
             return await collection.updateOne(
@@ -72,7 +107,7 @@ export default class UserDAO {
                 { [operador]: { [lista]: jogo } }
             )
         }
-        catch (err: any) {
+        catch (err) {
             if (err.name === 'MongoNetworkError' || err.name === 'MongoServerSelectionError' || err.message.includes('topology')) {
                 return {
                     status: 503, //serviço insdisponível
@@ -87,15 +122,15 @@ export default class UserDAO {
             }
         }
     }
-    
-    static async atualizarUsuario(collection: Collection<IUser>, email: string, dados: object) {
+
+    static async atualizarUsuario(collection, email, dados) {
         try {
-            const result = collection.updateOne(
+            const result = await collection.updateOne(
                 { email: email },
                 { $set: dados }
             )
             return result
-        } catch (err: any) {
+        } catch (err) {
             if (err.code === 11000) {
                 return { status: 409, error: "Este nome de usuário já está sendo usado por outra pessoa." };
             }
@@ -116,17 +151,17 @@ export default class UserDAO {
 
     }
 
-    static async follow_unfollow(collection: Collection<IUser>, idSeguidor: ObjectId, idSeguindo: ObjectId, isFollowing: boolean) {
+    static async follow_unfollow(collection, idSeguidorId, idSeguindoId, isFollowing) {
         const operador = isFollowing ? "$addToSet" : "$pull"
         try {
             const [resSeguidor, resSeguindo] = await Promise.all([
                 collection.updateOne(
-                    { _id: idSeguidor },
-                    { [operador]: { seguindo: idSeguindo } }
+                    { _id: idSeguidorId },
+                    { [operador]: { seguindo: idSeguindoId } }
                 ),
                 collection.updateOne(
-                    { _id: idSeguindo },
-                    { [operador]: { seguidores: idSeguidor } }
+                    { _id: idSeguindoId },
+                    { [operador]: { seguidores: idSeguidorId } }
                 )
             ])
 
@@ -134,7 +169,7 @@ export default class UserDAO {
                 "resSeguidor": resSeguidor,
                 "resSeguindo": resSeguindo
             }
-        } catch (err:any) {
+        } catch (err) {
             if (err.name === 'MongoNetworkError' || err.name === 'MongoServerSelectionError' || err.message.includes('topology')) {
                 return {
                     status: 503, //serviço insdisponível
@@ -144,9 +179,11 @@ export default class UserDAO {
 
             console.error("Erro em follow_unfollow:", err)
             return {
-                status: 500, 
+                status: 500,
                 error: "Ocorreu um erro interno ao salvar as alterações"
             }
         }
     }
 }
+
+module.exports = UserDAO

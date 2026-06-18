@@ -1,27 +1,16 @@
-import { Collection, ObjectId } from 'mongodb';
-import identifyNewReview, { IJogo } from './JogoDAO';
-import jogoDAO from './JogoDAO';
+const JogoDAO = require('./JogoDAO.js');
 
-export interface IReview {
-    userRef: ObjectId
-    gameRef: string
-    descricao: string
-    avaliacao: number
-    curtidas: number
-    data: Date
-}
-
-export default class ReviewDAO {
-    static async criarReview(collectionReview: Collection<IReview>,collectionJogo: Collection<IJogo>, review: IReview) {
+class ReviewDAO {
+    static async criarReview(collectionReview, collectionJogo, review) {
         try {
-            const [resInsertReview, resIdentfyReview ] = await Promise.all([collectionReview.insertOne(review), jogoDAO.identifyNewReview(collectionJogo, review.gameRef, review.avaliacao)]);
+            const [resInsertReview, resIdentfyReview] = await Promise.all([collectionReview.insertOne(review), JogoDAO.identifyNewReview(collectionJogo, review.gameRef, review.avaliacao)]);
             return {
                 resInsertReview: resInsertReview,
                 resIdentfyReview: resIdentfyReview
             };
-        } catch (err: any) {
-            console.error("Erro em ReviewDAO.criarReview: ", err)
-            
+        } catch (err) {
+            console.error("Erro em ReviewDAO.criarReview: ", JSON.stringify(err, null, 2))
+
             // USUARIO JÁ CRIOU UMA REVIEW NO JOGO.
             // NÃO PODE-SE PERMITIR MAIS DE UMA AVALIAÇÃO EM UM JOGO
             if (err.code === 11000) {
@@ -45,18 +34,18 @@ export default class ReviewDAO {
         }
     }
 
-    static async editarReview(collection : Collection<IReview>, userRef: ObjectId, gameRef: string, dados: Record<string, any>) {
+    static async editarReview(collection, userRef, gameRef, dados) {
         try {
             const result = await collection.updateOne(
-            {
-                userRef: userRef,
-                gameRef: gameRef
-            }, 
-            {$set: dados})
+                {
+                    userRef: userRef,
+                    gameRef: gameRef
+                },
+                { $set: dados })
             return result
-        } catch(err: any) {
+        } catch (err) {
             console.error("Erro em ReviewDAO.editarReview: ", err)
-            
+
             if (err.name === 'MongoNetworkError' || err.name === 'MongoServerSelectionError' || err.message.includes('topology')) {
                 return {
                     status: 503, //serviço insdisponível
@@ -71,11 +60,11 @@ export default class ReviewDAO {
         }
     }
 
-    static async deletarReview(collection : Collection<IReview>, userRef: ObjectId, gameRef: string) {
-        try{
-            const res = await collection.deleteOne({userRef: userRef, gameRef: gameRef})
+    static async deletarReview(collection, userRef, gameRef) {
+        try {
+            const res = await collection.deleteOne({ userRef: userRef, gameRef: gameRef })
             return res;
-        } catch(err: any) {
+        } catch (err) {
             console.error("Erro em ReviewDAO.deletarReview: ", err)
 
             if (err.name === 'MongoNetworkError' || err.name === 'MongoServerSelectionError' || err.message.includes('topology')) {
@@ -92,27 +81,26 @@ export default class ReviewDAO {
         }
     }
 
-    static async getGameReviews(collection: Collection<IReview>, id_igdb: string) {
+    static async getGameReviews(collection, gameRef) {
         try {
-            const res = collection.find({id_igdb: id_igdb}).toArray();
+            const res = await collection.find({ gameRef: gameRef }).toArray();
             return res;
-        } catch(err: any) {
+        } catch (err) {
             if (err.name === 'MongoNetworkError' || err.name === 'MongoServerSelectionError' || err.message.includes('topology')) {
                 console.error("Erro de rede: O banco de dados parece estar offline.", err);
                 return {
                     status: 503, // Service Unavailable
-                    body: { error: "Não foi possível conectar ao banco de dados. Verifique a sua internet e tente novamente mais tarde." }
+                    error: "Não foi possível conectar ao banco de dados. Verifique a sua internet e tente novamente mais tarde."
                 };
             }
 
             console.error("Erro não esperado na função getGameReviews:", err);
             return {
                 status: 500, // Internal Server Error
-                body: {
-                    error: "Erro interno do servidor.",
-                    detalhes: err.message
-                }
-            };
-        }
+                error: err.message
+            }
+        };
     }
 }
+
+module.exports = ReviewDAO
