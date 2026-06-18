@@ -1,6 +1,6 @@
 .navbar-content {
     background-color: var(--cor-navbar);
-    font-family: var(--fonte-navbar-links);
+    font-family: var(--site-official-font);
     font-weight: normal;
     font-size: 20px;
     width: 100%; min-height: 50px; height: auto;

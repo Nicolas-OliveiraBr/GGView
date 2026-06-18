@@ -24,8 +24,10 @@
 
 @font-face {
     font-family: "Open Sans Variable";
-    src: url('/fonts/Open Sans/OpenSans-VariableFont_wdth,wght.ttf');
+    src: url('/fonts/Open Sans/OpenSans-VariableFont.ttf');
     font-display: swap;
+    font-style: normal;
+    font-weight: normal;
 }
 
 @font-face {
@@ -36,7 +38,16 @@
     font-weight: normal;
 }
 
+@font-face {
+    font-family: "Archivo Black";
+    src: url('/fonts/Archivo Black/ArchivoBlack-Regular.ttf');
+    font-display: swap;
+    font-style: normal;
+    font-weight: normal;
+}
+
 :root {
+    /* Cores do site */
     --cor-navbar:  #8c0002;
     --cor-background-game: #B40103;
     --cor-background-card: #8c0002;
@@ -44,10 +55,12 @@
     --cor-botoes-e-acoes: rgb(172, 0, 0);
     --cor-texto:  #fcfcfc;
     --cor-footer: #360001;
+
+    /* Fontes do site */
     --fonte-navbar-links: "Goldman", sans-serif;
     --game-spef-font: sans-serif;
-    --game-name: "Anton", sans-serif;
-    --search-bar-font: "Open Sans Variable";
-    --search-bar-italic: "Open Sans Italic Variable";
-    --class-ind-livre: url("https://www.gov.br/mj/pt-br/assuntos/seus-direitos/classificacao-1/simbolos-de-autoclassificacao/l_borda.png/@@images/image");
+    --game-name: "Anton", Arial;
+    --search-bar-font: "Open Sans Variable", sans-serif;
+    --search-bar-italic: "Open Sans Italic Variable", sans-serif;
+    --site-official-font: "Archivo Black", sans-serif;
 }
